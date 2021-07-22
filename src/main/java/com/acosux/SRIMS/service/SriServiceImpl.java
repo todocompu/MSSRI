@@ -26,6 +26,13 @@ public class SriServiceImpl implements SriService {
     private final String conexionSri = "https://srienlinea.sri.gob.ec/facturacion-internet";
     private final String conexionWSVerificar = "http://certificados.ministeriodegobierno.gob.ec/gestorcertificados/antecedentes/data.php";
 
+//    private ClientHttpRequestFactory getClientHttpRequestFactory() {
+//        HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory();
+//        clientHttpRequestFactory.setConnectTimeout(HTTP_CONNECT_TIMEOUT);
+//        clientHttpRequestFactory.setReadTimeout(HTTP_READ_TIMEOUT);
+//        return clientHttpRequestFactory;
+//    }
+    
     public String consultaRucSri(String ruc) {
         String url = conexionSri + "/consultas/publico/ruc-datos2.jspa?ruc=" + ruc;
         String body = new RestTemplate().getForObject(url, String.class);
