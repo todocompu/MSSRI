@@ -5,7 +5,9 @@
  */
 package com.acosux.SRIMS.service;
 
-import com.acosux.SRIMS.util.RespuestaComprobante;
+import com.acosux.SRIMS.util.sri.AnxComprobanteElectronicoUtilTO;
+import com.acosux.SRIMS.util.sri.RespuestaComprobante;
+import com.acosux.SRIMS.util.sri.RespuestaSolicitud;
 
 /**
  *
@@ -14,5 +16,9 @@ import com.acosux.SRIMS.util.RespuestaComprobante;
 public interface ComprobantesSRIService {
 
     public RespuestaComprobante getAutorizadocionComprobantes(String claveAcceso, String tipoAmbiente) throws Exception;
+
+    public RespuestaSolicitud getRecepcionComprobantes(byte[] eXmlFirmado, String tipoAmbiente) throws Exception;
+
+    public AnxComprobanteElectronicoUtilTO getEnvioComprobanteElectronicosWS(byte[] eXmlFirmado, String claveAcceso, String tipoAmbiente) throws Exception;
 
 }

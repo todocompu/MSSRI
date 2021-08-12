@@ -1,8 +1,13 @@
 package com.acosux.SRIMS.util;
 
+import com.acosux.SRIMS.util.sri.RespuestaSolicitud;
+import com.acosux.SRIMS.util.sri.RespuestaComprobante;
 import com.acosux.SRIMS.MisPropiedades;
+import com.acosux.SRIMS.entidades.TipoAmbienteEnum;
 import com.acosux.SRIMS.service.AutorizacionComprobantes;
 import com.acosux.SRIMS.service.AutorizacionComprobantesService;
+import com.acosux.SRIMS.service.RecepcionComprobantes;
+import com.acosux.SRIMS.service.RecepcionComprobantesService;
 import java.net.URL;
 
 import javax.xml.namespace.QName;
@@ -23,7 +28,7 @@ public class UtilsWebService {
         passwordKeystore = "t0d0c0mPU";
         certificadoSeguridadSRI();
         StringBuilder url = new StringBuilder();
-        String direccionIPServicio = tipoAmbiente.equals("2") ? "https://cel.sri.gob.ec" : "https://celcer.sri.gob.ec";
+        String direccionIPServicio = tipoAmbiente.equals(TipoAmbienteEnum.PRODUCCION.getCode()) ? "https://cel.sri.gob.ec" : "https://celcer.sri.gob.ec";
         url.append(direccionIPServicio);
         url.append("/comprobantes-electronicos-ws/");
         url.append(nombreServicio);
@@ -38,6 +43,16 @@ public class UtilsWebService {
         ((BindingProvider) port).getRequestContext().put("com.sun.xml.internal.ws.connect.timeout", 9999);
         ((BindingProvider) port).getRequestContext().put("com.sun.xml.internal.ws.request.timeout", 9999);
         return port.autorizacionComprobante(claveAccesoComprobante);
+    }
+
+    public static RespuestaSolicitud validarComprobante(byte[] xml) throws Exception {
+        certificadoSeguridadSRI();
+        RecepcionComprobantesService service = new RecepcionComprobantesService(new URL(serviceUrlWS), new QName("http://ec.gob.sri.ws.recepcion", "RecepcionComprobantesOfflineService"));
+        RecepcionComprobantes port = service.getRecepcionComprobantesPort();
+        ((BindingProvider) port).getRequestContext().put("com.sun.xml.internal.ws.connect.timeout", 9999);
+        ((BindingProvider) port).getRequestContext().put("com.sun.xml.internal.ws.request.timeout", 9999);
+        RespuestaSolicitud respuestaSolicitud = port.validarComprobante(xml);
+        return respuestaSolicitud;
     }
 
     private static void certificadoSeguridadSRI() {

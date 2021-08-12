@@ -1,4 +1,4 @@
-package com.acosux.SRIMS.util;
+package com.acosux.SRIMS.util.sri;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -4,8 +4,8 @@
  */
 package com.acosux.SRIMS.entidades;
 
-import com.acosux.SRIMS.util.Autorizacion;
-import com.acosux.SRIMS.util.RespuestaComprobante;
+import com.acosux.SRIMS.util.sri.Autorizacion;
+import com.acosux.SRIMS.util.sri.RespuestaComprobante;
 import com.acosux.SRIMS.util.UtilsArchivos;
 
 public class AnxValidezComprobanteElectronico {

@@ -1,6 +1,6 @@
 package com.acosux.SRIMS.service;
 
-import com.acosux.SRIMS.util.RespuestaComprobante;
+import com.acosux.SRIMS.util.sri.RespuestaComprobante;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;

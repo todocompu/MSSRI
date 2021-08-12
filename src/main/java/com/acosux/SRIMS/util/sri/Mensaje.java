@@ -1,5 +1,5 @@
 
-package com.acosux.SRIMS.util;
+package com.acosux.SRIMS.util.sri;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
