@@ -19,7 +19,7 @@ public class Comprobante implements java.io.Serializable{
 
 		public List<Mensaje> getMensaje() {
 			if (mensaje == null)
-				mensaje = new ArrayList<Mensaje>();
+				mensaje = new ArrayList<>();
 			return this.mensaje;
 		}
 

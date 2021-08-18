@@ -113,6 +113,7 @@ public class UtilsArchivos {
             formatoFecha1.parse(fecha);
             fechaDevolver = formatoFecha2.format(formatoFecha1.getCalendar().getTime());
         } catch (ParseException ex) {
+            System.out.println("ERRORROR: " + ex.getMessage());
         }
         return fechaDevolver;
     }

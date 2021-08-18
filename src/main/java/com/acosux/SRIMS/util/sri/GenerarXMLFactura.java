@@ -110,7 +110,7 @@ public class GenerarXMLFactura {
         this.infoFactura = this.facturaFactory.createFacturaInfoFactura();
         // 2016-06-02
         this.infoFactura
-                .setFechaEmision(UtilsArchivos.fecha(invVentas.getVtaFecha().toString(), "yyyy-MM-dd", "dd/MM/yyyy"));
+                .setFechaEmision(UtilsArchivos.fecha(invVentas.getVtaFecha(), "dd/MM/yyyy"));
         this.infoFactura.setDirEstablecimiento(emisor.getDirEstablecimiento());
         if (emisor.getContribuyenteEspecial() != null && !emisor.getContribuyenteEspecial().equals("")) {
             this.infoFactura.setContribuyenteEspecial(emisor.getContribuyenteEspecial());
@@ -424,8 +424,8 @@ public class GenerarXMLFactura {
         Factura.InfoSustitutivaGuiaRemision infoSustitutivaGuiaRemision = new Factura.InfoSustitutivaGuiaRemision();
         infoSustitutivaGuiaRemision.setDirPartida(this.invVentaGuiaRemision.getGuiaPuntoPartida());
         infoSustitutivaGuiaRemision.setDirDestinatario(this.invVentaGuiaRemision.getGuiaPuntoLlegada());
-        infoSustitutivaGuiaRemision.setFechaIniTransporte(UtilsArchivos.fecha(invVentaGuiaRemision.getGuiaFechaInicioTransporte().toString(), "yyyy-MM-dd", "dd/MM/yyyy"));
-        infoSustitutivaGuiaRemision.setFechaFinTransporte(UtilsArchivos.fecha(invVentaGuiaRemision.getGuiaFechaFinTransporte().toString(), "yyyy-MM-dd", "dd/MM/yyyy"));
+        infoSustitutivaGuiaRemision.setFechaIniTransporte(UtilsArchivos.fecha(invVentaGuiaRemision.getGuiaFechaInicioTransporte(), "dd/MM/yyyy"));
+        infoSustitutivaGuiaRemision.setFechaFinTransporte(UtilsArchivos.fecha(invVentaGuiaRemision.getGuiaFechaFinTransporte(), "dd/MM/yyyy"));
         infoSustitutivaGuiaRemision.setRazonSocialTransportista(invVentaGuiaRemision.getInvTransportista().getTransNombres());
 
         Character tipoTransportista = invVentaGuiaRemision.getInvTransportista().getTransIdTipo();

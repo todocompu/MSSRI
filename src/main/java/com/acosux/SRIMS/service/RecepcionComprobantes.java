@@ -13,8 +13,8 @@ public interface RecepcionComprobantes {
 
     @WebMethod
     @WebResult(name = "RespuestaRecepcionComprobante", targetNamespace = "")
-    @RequestWrapper(localName = "validarComprobante", targetNamespace = "http://ec.gob.sri.ws.recepcion", className = "ec.com.todocompu.ShrimpSoftUtils.sri.ws.recepcion.ValidarComprobante")
-    @ResponseWrapper(localName = "validarComprobanteResponse", targetNamespace = "http://ec.gob.sri.ws.recepcion", className = "ec.com.todocompu.ShrimpSoftUtils.sri.ws.recepcion.ValidarComprobanteResponse")
+    @RequestWrapper(localName = "validarComprobante", targetNamespace = "http://ec.gob.sri.ws.recepcion", className = "com.acosux.SRIMS.service.ValidarComprobante")
+    @ResponseWrapper(localName = "validarComprobanteResponse", targetNamespace = "http://ec.gob.sri.ws.recepcion", className = "com.acosux.SRIMS.service.ValidarComprobanteResponse")
     public RespuestaSolicitud validarComprobante(
             @WebParam(name = "xml", targetNamespace = "") byte[] xml);
 

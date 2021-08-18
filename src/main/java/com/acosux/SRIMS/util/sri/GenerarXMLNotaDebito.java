@@ -117,7 +117,7 @@ public class GenerarXMLNotaDebito {
         }
         this.infoNotaDebito = this.notaDebitoFactory.createNotaDebitoInfoNotaDebito();
         this.infoNotaDebito
-                .setFechaEmision(UtilsArchivos.fecha(invVentas.getVtaFecha().toString(), "yyyy-MM-dd", "dd/MM/yyyy"));
+                .setFechaEmision(UtilsArchivos.fecha(invVentas.getVtaFecha(), "dd/MM/yyyy"));
         this.infoNotaDebito.setDirEstablecimiento(emisor.getDirEstablecimiento());
         this.infoNotaDebito.setTipoIdentificacionComprador(codigoTipoTransaccion);
         this.infoNotaDebito.setRazonSocialComprador(invCliente.getCliRazonSocial());
@@ -130,7 +130,7 @@ public class GenerarXMLNotaDebito {
         this.infoNotaDebito.setCodDocModificado(TipoComprobanteEnum.FACTURA.getCode());/// corregir
         this.infoNotaDebito.setNumDocModificado(numeroComplemento);
         this.infoNotaDebito.setFechaEmisionDocSustento(
-                UtilsArchivos.fecha(fechaComplemento.toString(), "yyyy-MM-dd", "dd/MM/yyyy"));
+                UtilsArchivos.fecha(fechaComplemento, "dd/MM/yyyy"));
         this.infoNotaDebito.setTotalSinImpuestos(UtilsArchivos.redondeoDecimalBigDecimal(
                 invVentas.getVtaSubtotalBase0().add(invVentas.getVtaSubtotalBaseImponible()), 2,
                 java.math.RoundingMode.HALF_UP));
