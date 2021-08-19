@@ -77,7 +77,7 @@ public class LlenarObjetoAnx {
             autorizacionFecha = UtilsArchivos.fecha(ComprobantesUtil.obtenerValorXML(directorio, "/*/fechaAutorizacion"), "dd/MM/yyyy hh:mm:ss", "yyyy-MM-dd hh:mm:ss");
         } else {
             estado = mensajeEnvioComprobanteAutorizado.substring(mensajeEnvioComprobanteAutorizado.lastIndexOf("<") + 1, mensajeEnvioComprobanteAutorizado.lastIndexOf(">")).trim();
-            autorizacionFecha = UtilsArchivos.fecha(fechaEmision, "dd-MM-yyyy", "yyyy-MM-dd hh:mm:ss");// "2014-11-19
+            autorizacionFecha = fechaEmision;// "2014-11-19
             autorizacionNumero = mensajeEnvioComprobanteAutorizado
                     .substring(mensajeEnvioComprobanteAutorizado.lastIndexOf("-(") + 2, mensajeEnvioComprobanteAutorizado.lastIndexOf(")-"))
                     .trim();
@@ -98,7 +98,7 @@ public class LlenarObjetoAnx {
         anxVentaElectronicaTO.setVtaNumero(vtaNumero);///
         anxVentaElectronicaTO.setUsrEmpresa(vtaEmp);
         anxVentaElectronicaTO.setUsrFechaInserta(UtilsArchivos.fechaSistema());
-        anxVentaElectronicaTO.setVtaFecha(fechaEmision.equals("  -  -    ") ? null : UtilsArchivos.fecha(fechaEmision, "dd-MM-yyyy", "yyyy-MM-dd"));
+        anxVentaElectronicaTO.setVtaFecha(fechaEmision.equals("  -  -    ") ? null : fechaEmision);
         return anxVentaElectronicaTO;
     }
 

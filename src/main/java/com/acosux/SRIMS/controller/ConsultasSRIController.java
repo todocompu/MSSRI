@@ -288,7 +288,7 @@ public class ConsultasSRIController {
                         mensaje = retencionesSriService.envioComprobanteWebServiceSRI(emisor, claveAcceso);
                         if (mensaje != null && mensaje.equals("AUTORIZADO")) {
                             InvVentasPK pk = invVentas.getInvVentasPK();
-                            AnxVentaElectronicaTO anxVentaElectronicaTO = LlenarObjetoAnx.llenarObjetoAnxVentaElectronicaTO(pk.getVtaEmpresa(), pk.getVtaPeriodo(), pk.getVtaMotivo(), pk.getVtaNumero(), claveAcceso, invVentas.getVtaFecha().toString(), mensaje, emisor);
+                            AnxVentaElectronicaTO anxVentaElectronicaTO = LlenarObjetoAnx.llenarObjetoAnxVentaElectronicaTO(pk.getVtaEmpresa(), pk.getVtaPeriodo(), pk.getVtaMotivo(), pk.getVtaNumero(), claveAcceso, UtilsArchivos.fecha(invVentas.getVtaFecha(), "yyyy-MM-dd"), mensaje, emisor);
                             resp.setExtraInfo(anxVentaElectronicaTO);
                         }
                     }
