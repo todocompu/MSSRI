@@ -21,9 +21,9 @@ public class InvGuiaRemision implements Serializable {
     protected InvGuiaRemisionPK invGuiaRemisionPK;
     private String guiaDocumentoNumero;
     private String guiaPlaca;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date guiaFechaInicioTransporte;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date guiaFechaFinTransporte;
     private String guiaPuntoPartida;
     private String nroDocumento;
@@ -35,7 +35,7 @@ public class InvGuiaRemision implements Serializable {
     private String guiaRuta;
     private String guiaInformacionAdicional;
     private String usrCodigo;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date guiaFechaEmision;
 
     public InvGuiaRemision() {

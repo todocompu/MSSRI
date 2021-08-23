@@ -361,6 +361,9 @@ public class ConsultasSRIController {
         String agenteRetencion = (String) map.get("agenteRetencion");
         String passSignature = (String) map.get("passSignature");
         String fechaVenta = (String) map.get("fechaVenta");
+        String emision = UtilsJSON.jsonToObjeto(String.class, map.get("emision"));
+        String inicio = UtilsJSON.jsonToObjeto(String.class, map.get("inicio"));
+        String fin = UtilsJSON.jsonToObjeto(String.class, map.get("fin"));
         Emisor emisor = UtilsJSON.jsonToObjeto(Emisor.class, map.get("emisor"));
         InvGuiaRemision invGuiaRemision = UtilsJSON.jsonToObjeto(InvGuiaRemision.class, map.get("invGuiaRemision"));
         InvTransportista invTransportista = UtilsJSON.jsonToObjeto(InvTransportista.class, map.get("invTransportista"));
@@ -370,6 +373,10 @@ public class ConsultasSRIController {
         UtilsArchivos util = new UtilsArchivos();
         String mensaje = "F";
         try {
+            //formatoFechas
+            invGuiaRemision.setGuiaFechaEmision(UtilsArchivos.fecha(emision, "yyyy-MM-dd"));
+            invGuiaRemision.setGuiaFechaInicioTransporte(UtilsArchivos.fecha(inicio, "yyyy-MM-dd"));
+            invGuiaRemision.setGuiaFechaFinTransporte(UtilsArchivos.fecha(fin, "yyyy-MM-dd"));
             GenerarXMLGuiaRemision generarXMLGuiaRemision = new GenerarXMLGuiaRemision();
             GuiaRemision guiaRemision = generarXMLGuiaRemision.generarXMGuiaRemision(invGuiaRemision, invTransportista, invCliente, listaInvGuiaRemisionDetalleTO, claveAcceso, emisor, fechaVenta, agenteRetencion);
             if (guiaRemision == null) {

@@ -104,6 +104,14 @@ public class UtilsArchivos {
             return null;
         }
     }
+    
+    public static Date fecha(String fecha, String mascara) {
+        try {
+            return (Date) new SimpleDateFormat(mascara).parse(fecha);
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
     public static String fecha(String fecha, String mascara1, String mascara2) {
         String fechaDevolver = "";

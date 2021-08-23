@@ -13,9 +13,7 @@ import com.acosux.SRIMS.util.sri.EnvioComprobantesWs;
 import com.acosux.SRIMS.util.sri.FormGenerales;
 import com.acosux.SRIMS.util.sri.RespuestaSolicitud;
 import com.acosux.SRIMS.util.sri.modelo.Emisor;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -90,36 +88,5 @@ public class RetencionesSriServiceImpl implements RetencionesSriService {
         }
         return mensajeAutorizacion;
     }
-    
-    private void mostrarArchivoXML(String rutaArchivo){
-        File archivo = null;
-        FileReader fr = null;
-        BufferedReader br = null;
 
-        try {
-           // Apertura del fichero y creacion de BufferedReader para poder
-           // hacer una lectura comoda (disponer del metodo readLine()).
-           archivo = new File (rutaArchivo);
-           fr = new FileReader (archivo);
-           br = new BufferedReader(fr);
-
-           // Lectura del fichero
-           String linea;
-           while((linea=br.readLine())!=null)
-              System.out.println(linea);
-        } catch(Exception e){
-           e.printStackTrace();
-        } finally{
-           // En el finally cerramos el fichero, para asegurarnos
-           // que se cierra tanto si todo va bien como si salta 
-           // una excepcion.
-           try{                    
-              if( null != fr ){   
-                 fr.close();     
-              }                  
-           }catch (Exception e2){ 
-              e2.printStackTrace();
-           }
-        }
-    }
 }
