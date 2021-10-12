@@ -42,6 +42,8 @@ public class UtilsWebService {
         AutorizacionComprobantes port = service.getAutorizacionComprobantesPort();
         ((BindingProvider) port).getRequestContext().put("com.sun.xml.internal.ws.connect.timeout", 9999);
         ((BindingProvider) port).getRequestContext().put("com.sun.xml.internal.ws.request.timeout", 9999);
+        ((BindingProvider) port).getRequestContext().put("com.sun.xml.ws.request.timeout", 9999);
+        ((BindingProvider) port).getRequestContext().put("com.sun.xml.ws.connect.timeout", 9999);
         return port.autorizacionComprobante(claveAccesoComprobante);
     }
 
@@ -51,6 +53,8 @@ public class UtilsWebService {
         RecepcionComprobantes port = service.getRecepcionComprobantesPort();
         ((BindingProvider) port).getRequestContext().put("com.sun.xml.internal.ws.connect.timeout", 9999);
         ((BindingProvider) port).getRequestContext().put("com.sun.xml.internal.ws.request.timeout", 9999);
+        ((BindingProvider) port).getRequestContext().put("com.sun.xml.ws.request.timeout", 9999);
+        ((BindingProvider) port).getRequestContext().put("com.sun.xml.ws.connect.timeout", 9999);
         RespuestaSolicitud respuestaSolicitud = port.validarComprobante(xml);
         return respuestaSolicitud;
     }
