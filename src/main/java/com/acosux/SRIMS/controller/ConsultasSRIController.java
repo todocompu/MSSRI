@@ -203,11 +203,12 @@ public class ConsultasSRIController {
         List<AnxCompraDetalleTO> listAnxCompraDetalleTO = UtilsJSON.jsonToList(AnxCompraDetalleTO.class, map.get("listAnxCompraDetalleTO"));
         InvProveedor invProveedor = UtilsJSON.jsonToObjeto(InvProveedor.class, map.get("invProveedor"));
         byte[] archivoFirma = UtilsJSON.jsonToObjeto(byte[].class, map.get("archivoFirma"));
+        SisEmpresaParametros sisEmpresaParametros = UtilsJSON.jsonToObjeto(SisEmpresaParametros.class, map.get("sisEmpresaParametros"));
         UtilsArchivos util = new UtilsArchivos();
         GenerarXMLRetencion generarXMLRetencion = new GenerarXMLRetencion();
         String mensaje = "F";
         try {
-            ComprobanteRetencion comprobanteRetencion = generarXMLRetencion.generarComprobanteDeRetencion(invComprasTO, anxCompraTO, listAnxCompraDetalleTO, invProveedor, claveAcceso, emisor, agenteRetencion);
+            ComprobanteRetencion comprobanteRetencion = generarXMLRetencion.generarComprobanteDeRetencion(invComprasTO, anxCompraTO, listAnxCompraDetalleTO, invProveedor, claveAcceso, emisor, agenteRetencion, sisEmpresaParametros);
             if (comprobanteRetencion == null) {
                 mensaje = "FIngrese los campos obligatorios del comprobante ...";
             } else {
