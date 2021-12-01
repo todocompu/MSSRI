@@ -284,7 +284,7 @@ public class GenerarXMLFactura {
                 ? UtilsArchivos.redondeoDecimalBigDecimal(cantidad.multiply(precioUnitario)
                         .multiply(BigDecimal.ONE.subtract(invVentasDetalleTO.getPorcentajeDescuento()
                                 .divide(new java.math.BigDecimal("100"))))
-                        .add(cero).multiply(ivaVigente.divide(new java.math.BigDecimal("100.00"),
+                        .add(cero).multiply(ivaVigente.divide(new java.math.BigDecimal("100.00"), 2,
                         java.math.RoundingMode.HALF_UP)))
                 : cero);
         result.getImpuesto().add(i);
