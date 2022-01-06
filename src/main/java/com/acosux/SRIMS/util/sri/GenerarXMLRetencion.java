@@ -91,6 +91,10 @@ public class GenerarXMLRetencion {
             this.infoTributaria.setAgenteRetencion(agenteRetencion);
         }
 
+        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {
+            this.infoTributaria.setRegimenMicroempresas("CONTRIBUYENTE RÉGIMEN MICROEMPRESAS");
+        }
+
         this.infoCompRetencion = this.factoryRetencion.createComprobanteRetencionInfoCompRetencion();
         this.infoCompRetencion.setFechaEmision(UtilsArchivos.fecha(anxCompraTO.getCompRetencionFechaEmision(), "yyyy-MM-dd", "dd/MM/yyyy"));
         if (this.emisor.getDirEstablecimiento() != null && !this.emisor.getDirEstablecimiento().equals("")) {
