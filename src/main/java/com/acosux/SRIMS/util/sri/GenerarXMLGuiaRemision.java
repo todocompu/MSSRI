@@ -9,6 +9,7 @@ import com.acosux.SRIMS.entidades.InvCliente;
 import com.acosux.SRIMS.entidades.InvGuiaRemision;
 import com.acosux.SRIMS.entidades.InvGuiaRemisionDetalleTO;
 import com.acosux.SRIMS.entidades.InvTransportista;
+import com.acosux.SRIMS.entidades.SisEmpresaParametros;
 import com.acosux.SRIMS.entidades.TipoComprobanteEnum;
 import com.acosux.SRIMS.util.UtilsArchivos;
 import com.acosux.SRIMS.util.sri.modelo.Emisor;
@@ -27,11 +28,14 @@ public class GenerarXMLGuiaRemision {
     private InvCliente invCliente = null;
     private InvTransportista invTransportista = null;
     private InvGuiaRemision invGuiaRemision = null;
+    private SisEmpresaParametros sisEmpresaParametros;
 
-    public GuiaRemision generarXMGuiaRemision(InvGuiaRemision invGuiaRemision, InvTransportista invTransportista, InvCliente invCliente, List<InvGuiaRemisionDetalleTO> listInvGuiaRemisionDetalleTO, String claveDeAcceso, Emisor emisor, String fechaVenta, String agenteRetencion) throws Exception {
+    public GuiaRemision generarXMGuiaRemision(InvGuiaRemision invGuiaRemision, InvTransportista invTransportista, InvCliente invCliente, 
+            List<InvGuiaRemisionDetalleTO> listInvGuiaRemisionDetalleTO, String claveDeAcceso, Emisor emisor, String fechaVenta, String agenteRetencion, SisEmpresaParametros sisEmpresaParametros) throws Exception {
         this.invCliente = invCliente;
         this.invTransportista = invTransportista;
         this.invGuiaRemision = invGuiaRemision;
+        this.sisEmpresaParametros = sisEmpresaParametros;
 
         GuiaRemision guiaRemision = null;
 
@@ -193,6 +197,13 @@ public class GenerarXMLGuiaRemision {
                     info.getCampoAdicional().add(detalle);
                 }
             }
+        }
+        
+        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {
+            GuiaRemision.InfoAdicional.CampoAdicional detalle = new GuiaRemision.InfoAdicional.CampoAdicional();
+            detalle.setNombre("Régimen");
+            detalle.setValue("Contribuyente régimen RIMPE");
+            info.getCampoAdicional().add(detalle);
         }
         return info;
     }

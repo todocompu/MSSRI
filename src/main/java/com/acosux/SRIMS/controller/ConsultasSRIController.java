@@ -141,6 +141,7 @@ public class ConsultasSRIController {
                 return respuestaComprobante;
             }
         } catch (Exception e) {
+            //cuando se Cae el SRI LLEGA ACÁ
             return null;
         }
     }
@@ -203,11 +204,12 @@ public class ConsultasSRIController {
         List<AnxCompraDetalleTO> listAnxCompraDetalleTO = UtilsJSON.jsonToList(AnxCompraDetalleTO.class, map.get("listAnxCompraDetalleTO"));
         InvProveedor invProveedor = UtilsJSON.jsonToObjeto(InvProveedor.class, map.get("invProveedor"));
         byte[] archivoFirma = UtilsJSON.jsonToObjeto(byte[].class, map.get("archivoFirma"));
+        SisEmpresaParametros sisEmpresaParametros = UtilsJSON.jsonToObjeto(SisEmpresaParametros.class, map.get("sisEmpresaParametros"));
         UtilsArchivos util = new UtilsArchivos();
         GenerarXMLRetencion generarXMLRetencion = new GenerarXMLRetencion();
         String mensaje = "F";
         try {
-            ComprobanteRetencion comprobanteRetencion = generarXMLRetencion.generarComprobanteDeRetencion(invComprasTO, anxCompraTO, listAnxCompraDetalleTO, invProveedor, claveAcceso, emisor, agenteRetencion);
+            ComprobanteRetencion comprobanteRetencion = generarXMLRetencion.generarComprobanteDeRetencion(invComprasTO, anxCompraTO, listAnxCompraDetalleTO, invProveedor, claveAcceso, emisor, agenteRetencion, sisEmpresaParametros);
             if (comprobanteRetencion == null) {
                 mensaje = "FIngrese los campos obligatorios del comprobante ...";
             } else {
@@ -315,11 +317,12 @@ public class ConsultasSRIController {
         List<InvComprasDetalle> listaInvComprasDetalle = UtilsJSON.jsonToList(InvComprasDetalle.class, map.get("listaInvComprasDetalle"));
         InvProveedor invProveedor = UtilsJSON.jsonToObjeto(InvProveedor.class, map.get("invProveedor"));
         byte[] archivoFirma = UtilsJSON.jsonToObjeto(byte[].class, map.get("archivoFirma"));
+        SisEmpresaParametros sisEmpresaParametros = UtilsJSON.jsonToObjeto(SisEmpresaParametros.class, map.get("sisEmpresaParametros"));
         UtilsArchivos util = new UtilsArchivos();
         String mensaje = "F";
         try {
             GenerarXMLiquidacionCompras generarXMLiquidacionCompras = new GenerarXMLiquidacionCompras();
-            LiquidacionCompra liquidacionCompra = generarXMLiquidacionCompras.generarXMLiquidacionCompras(invComprasTO, invProveedor, listaInvComprasDetalle, claveAcceso, emisor, agenteRetencion);
+            LiquidacionCompra liquidacionCompra = generarXMLiquidacionCompras.generarXMLiquidacionCompras(invComprasTO, invProveedor, listaInvComprasDetalle, claveAcceso, emisor, agenteRetencion, sisEmpresaParametros);
             if (liquidacionCompra == null) {
                 mensaje = "FIngrese los campos obligatorios del comprobante ...";
             } else {
@@ -370,6 +373,7 @@ public class ConsultasSRIController {
         List<InvGuiaRemisionDetalleTO> listaInvGuiaRemisionDetalleTO = UtilsJSON.jsonToList(InvGuiaRemisionDetalleTO.class, map.get("listaInvGuiaRemisionDetalleTO"));
         InvCliente invCliente = UtilsJSON.jsonToObjeto(InvCliente.class, map.get("invCliente"));
         byte[] archivoFirma = UtilsJSON.jsonToObjeto(byte[].class, map.get("archivoFirma"));
+        SisEmpresaParametros sisEmpresaParametros = UtilsJSON.jsonToObjeto(SisEmpresaParametros.class, map.get("sisEmpresaParametros"));
         UtilsArchivos util = new UtilsArchivos();
         String mensaje = "F";
         try {
@@ -378,7 +382,7 @@ public class ConsultasSRIController {
             invGuiaRemision.setGuiaFechaInicioTransporte(UtilsArchivos.fecha(inicio, "yyyy-MM-dd"));
             invGuiaRemision.setGuiaFechaFinTransporte(UtilsArchivos.fecha(fin, "yyyy-MM-dd"));
             GenerarXMLGuiaRemision generarXMLGuiaRemision = new GenerarXMLGuiaRemision();
-            GuiaRemision guiaRemision = generarXMLGuiaRemision.generarXMGuiaRemision(invGuiaRemision, invTransportista, invCliente, listaInvGuiaRemisionDetalleTO, claveAcceso, emisor, fechaVenta, agenteRetencion);
+            GuiaRemision guiaRemision = generarXMLGuiaRemision.generarXMGuiaRemision(invGuiaRemision, invTransportista, invCliente, listaInvGuiaRemisionDetalleTO, claveAcceso, emisor, fechaVenta, agenteRetencion, sisEmpresaParametros);
             if (guiaRemision == null) {
                 mensaje = "FIngrese los campos obligatorios del comprobante ...";
             } else {

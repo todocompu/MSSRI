@@ -9,6 +9,7 @@ import com.acosux.SRIMS.entidades.AnxCompraDetalleTO;
 import com.acosux.SRIMS.entidades.AnxCompraTO;
 import com.acosux.SRIMS.entidades.InvComprasTO;
 import com.acosux.SRIMS.entidades.InvProveedor;
+import com.acosux.SRIMS.entidades.SisEmpresaParametros;
 import com.acosux.SRIMS.entidades.TipoComprobanteEnum;
 import com.acosux.SRIMS.util.ComprobantesUtil;
 import com.acosux.SRIMS.util.UtilsArchivos;
@@ -35,10 +36,11 @@ public class GenerarXMLRetencion {
     private InvComprasTO invComprasTO = null;
     private InvProveedor invProveedor;
     private List<AnxCompraDetalleTO> listAnxCompraDetalleTO = null;
+    private SisEmpresaParametros sisEmpresaParametros;
 
     public ComprobanteRetencion generarComprobanteDeRetencion(InvComprasTO invComprasTO, AnxCompraTO anxCompraTO,
             List<AnxCompraDetalleTO> listAnxCompraDetalleTO, InvProveedor invProveedor, String claveDeAcceso,
-            Emisor emisor, String agenteRetencion) {
+            Emisor emisor, String agenteRetencion, SisEmpresaParametros sisEmpresaParametros) {
         this.factoryRetencion = new ObjectFactoryRetencion();
         ComprobanteRetencion compRetencion = null;
         this.emisor = emisor;
@@ -47,6 +49,7 @@ public class GenerarXMLRetencion {
         this.listAnxCompraDetalleTO = listAnxCompraDetalleTO;
         this.invProveedor = invProveedor;
         this.claveDeAcceso = claveDeAcceso;
+        this.sisEmpresaParametros = sisEmpresaParametros;
         if (!llenarObjetoComprobante(agenteRetencion)) {
             ComprobanteRetencion.Impuestos impuestos = obtenerImpuestosRetencio();
             ComprobanteRetencion.InfoAdicional informacion = generarInformacionAdicionalComprobanteRetencion();
@@ -244,6 +247,13 @@ public class GenerarXMLRetencion {
             ComprobanteRetencion.InfoAdicional.CampoAdicional detalle = new ComprobanteRetencion.InfoAdicional.CampoAdicional();
             detalle.setNombre("Web Descarga");
             detalle.setValue((String) this.emisor.getParWebDocumentosElectronicos());
+            info.getCampoAdicional().add(detalle);
+        }
+
+        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {
+            ComprobanteRetencion.InfoAdicional.CampoAdicional detalle = new ComprobanteRetencion.InfoAdicional.CampoAdicional();
+            detalle.setNombre("Régimen");
+            detalle.setValue("Contribuyente régimen RIMPE");
             info.getCampoAdicional().add(detalle);
         }
 

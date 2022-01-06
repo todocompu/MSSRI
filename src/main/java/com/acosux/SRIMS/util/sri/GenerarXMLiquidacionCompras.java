@@ -8,6 +8,7 @@ package com.acosux.SRIMS.util.sri;
 import com.acosux.SRIMS.entidades.InvComprasDetalle;
 import com.acosux.SRIMS.entidades.InvComprasTO;
 import com.acosux.SRIMS.entidades.InvProveedor;
+import com.acosux.SRIMS.entidades.SisEmpresaParametros;
 import com.acosux.SRIMS.entidades.TipoComprobanteEnum;
 import com.acosux.SRIMS.util.UtilsArchivos;
 import com.acosux.SRIMS.util.sri.modelo.Emisor;
@@ -28,10 +29,13 @@ public class GenerarXMLiquidacionCompras {
     private InvProveedor invProveedor = null;
     private InvComprasTO invComprasTO = null;
     private LiquidacionCompra.InfoLiquidacionCompra infoLiquidacionCompra = null;
+    private SisEmpresaParametros sisEmpresaParametros;
 
-    public LiquidacionCompra generarXMLiquidacionCompras(InvComprasTO invComprasTO, InvProveedor invProveedor, List<InvComprasDetalle> listInvComprasDetalle, String claveDeAcceso, Emisor emisor, String agenteRetencion) throws Exception {
+    public LiquidacionCompra generarXMLiquidacionCompras(InvComprasTO invComprasTO, InvProveedor invProveedor, List<InvComprasDetalle> listInvComprasDetalle, 
+            String claveDeAcceso, Emisor emisor, String agenteRetencion, SisEmpresaParametros sisEmpresaParametros) throws Exception {
         this.invProveedor = invProveedor;
         this.invComprasTO = invComprasTO;
+        this.sisEmpresaParametros = sisEmpresaParametros;
 
         LiquidacionCompra liqCompra = null;
 
@@ -261,6 +265,13 @@ public class GenerarXMLiquidacionCompras {
             LiquidacionCompra.InfoAdicional.CampoAdicional detalle = new LiquidacionCompra.InfoAdicional.CampoAdicional();
             detalle.setNombre("Observaciones");
             detalle.setValue(this.invComprasTO.getCompObservaciones());
+            info.getCampoAdicional().add(detalle);
+        }
+        
+        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {
+            LiquidacionCompra.InfoAdicional.CampoAdicional detalle = new LiquidacionCompra.InfoAdicional.CampoAdicional();
+            detalle.setNombre("Régimen");
+            detalle.setValue("Contribuyente régimen RIMPE");
             info.getCampoAdicional().add(detalle);
         }
 
