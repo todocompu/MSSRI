@@ -17,6 +17,8 @@ public interface CatastroMicroempresaService {
 
     public boolean existeCatastroMicroEmpresa(String identificacion) throws Exception;
 
+    public boolean existeCatastroRimpe(String identificacion) throws Exception;
+
     @Transactional
     public String insertarListadoCatastroMicroempresa(List<AnxCatastroMicroempresa> listado, boolean permitirBorrar) throws Exception;
 

@@ -66,4 +66,19 @@ public class CatastroController {
         }
         return resp;
     }
+    
+    @RequestMapping(value = "/existeCatastroRimpe/{identificacion}", method = {RequestMethod.GET})
+    public RespuestaWebTO existeCatastroRimpe(@PathVariable("identificacion") String identificacion) {
+        RespuestaWebTO resp = new RespuestaWebTO();
+        resp.setEstadoOperacion(RespuestaWebTO.EstadoOperacionEnum.ADVERTENCIA.getValor());
+        try {
+            boolean respues = catastroMicroempresaService.existeCatastroRimpe(identificacion);
+            resp.setEstadoOperacion(RespuestaWebTO.EstadoOperacionEnum.EXITO.getValor());
+            resp.setExtraInfo(respues);
+        } catch (Exception e) {
+            resp.setEstadoOperacion(RespuestaWebTO.EstadoOperacionEnum.ERROR.getValor());
+            resp.setOperacionMensaje(e.getMessage());
+        }
+        return resp;
+    }
 }

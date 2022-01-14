@@ -6,6 +6,7 @@
 package com.acosux.SRIMS.service;
 
 import com.acosux.SRIMS.dao.CatastroMicroempresaDao;
+import com.acosux.SRIMS.dao.CatastroRimpeDao;
 import com.acosux.SRIMS.entidades.AnxCatastroMicroempresa;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,17 @@ public class CatastroMicroempresaServiceImpl implements CatastroMicroempresaServ
 
     @Autowired
     private CatastroMicroempresaDao catastroMicroempresaDao;
+    @Autowired
+    private CatastroRimpeDao catastroRimpeDao;
 
     @Override
     public boolean existeCatastroMicroEmpresa(String identificacion) throws Exception {
         return catastroMicroempresaDao.existeCatastroMicroEmpresa(identificacion);
+    }
+
+    @Override
+    public boolean existeCatastroRimpe(String identificacion) throws Exception {
+        return catastroRimpeDao.existeCatastroRimpe(identificacion);
     }
 
     @Override
