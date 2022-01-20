@@ -99,9 +99,9 @@ public class GenerarXMLFactura {
         this.infoTributaria.setSecuencial(invVentas.getVtaDocumentoNumero().substring(8));
         this.infoTributaria.setDirMatriz(emisor.getDirEstablecimiento());
 
-//        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {
-//            this.infoTributaria.setRegimenMicroempresas("CONTRIBUYENTE RÉGIMEN MICROEMPRESAS");
-//        }
+        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {
+            this.infoTributaria.setContribuyenteRimpe("CONTRIBUYENTE RÉGIMEN RIMPE");
+        }
         if (this.sisEmpresaParametros.getParAgenteRetencion() != null && !this.sisEmpresaParametros.getParAgenteRetencion().equals("")) {
             this.infoTributaria.setAgenteRetencion(sisEmpresaParametros.getParAgenteRetencion());
         }
@@ -401,13 +401,6 @@ public class GenerarXMLFactura {
             detalle.setValue(this.invVentas.getVtaObservaciones());
             info.getCampoAdicional().add(detalle);
         }
-        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {
-            Factura.InfoAdicional.CampoAdicional detalle = new Factura.InfoAdicional.CampoAdicional();
-            detalle.setNombre("Régimen");
-            detalle.setValue("Contribuyente régimen RIMPE");
-            info.getCampoAdicional().add(detalle);
-        }
-
         return info;
     }
 

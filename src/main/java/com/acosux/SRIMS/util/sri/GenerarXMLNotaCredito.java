@@ -89,9 +89,9 @@ public class GenerarXMLNotaCredito {
         this.infoTributaria.setPtoEmi(invVentas.getVtaDocumentoNumero().substring(4, 7));
         this.infoTributaria.setSecuencial(invVentas.getVtaDocumentoNumero().substring(8));
         this.infoTributaria.setDirMatriz(this.emisor.getDireccionMatriz());
-//        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {
-//            this.infoTributaria.setRegimenMicroempresas("CONTRIBUYENTE RÉGIMEN MICROEMPRESAS");
-//        }
+        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {
+            this.infoTributaria.setContribuyenteRimpe("CONTRIBUYENTE RÉGIMEN RIMPE");
+        }
 
         if (this.sisEmpresaParametros.getParAgenteRetencion() != null && !this.sisEmpresaParametros.getParAgenteRetencion().equals("")) {
             this.infoTributaria.setAgenteRetencion(sisEmpresaParametros.getParAgenteRetencion());
@@ -213,12 +213,6 @@ public class GenerarXMLNotaCredito {
             NotaCredito.InfoAdicional.CampoAdicional detalle = new NotaCredito.InfoAdicional.CampoAdicional();
             detalle.setNombre("Web Descarga");
             detalle.setValue((String) this.emisor.getParWebDocumentosElectronicos());
-            info.getCampoAdicional().add(detalle);
-        }
-        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {
-            NotaCredito.InfoAdicional.CampoAdicional detalle = new NotaCredito.InfoAdicional.CampoAdicional();
-            detalle.setNombre("Régimen");
-            detalle.setValue("Contribuyente régimen RIMPE");
             info.getCampoAdicional().add(detalle);
         }
         return info;
