@@ -81,6 +81,9 @@ public class GenerarXMLiquidacionCompras {
         if (agenteRetencion != null && !agenteRetencion.equals("")) {
             this.infoTributaria.setAgenteRetencion(agenteRetencion);
         }
+        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {
+            this.infoTributaria.setContribuyenteRimpe("CONTRIBUYENTE RÉGIMEN RIMPE");
+        }
 
         // </infoTributaria>
         // infoLiquidacionCompra();
@@ -265,13 +268,6 @@ public class GenerarXMLiquidacionCompras {
             LiquidacionCompra.InfoAdicional.CampoAdicional detalle = new LiquidacionCompra.InfoAdicional.CampoAdicional();
             detalle.setNombre("Observaciones");
             detalle.setValue(this.invComprasTO.getCompObservaciones());
-            info.getCampoAdicional().add(detalle);
-        }
-        
-        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {
-            LiquidacionCompra.InfoAdicional.CampoAdicional detalle = new LiquidacionCompra.InfoAdicional.CampoAdicional();
-            detalle.setNombre("Régimen");
-            detalle.setValue("Contribuyente régimen RIMPE");
             info.getCampoAdicional().add(detalle);
         }
 

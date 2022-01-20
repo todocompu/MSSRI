@@ -80,6 +80,9 @@ public class GenerarXMLGuiaRemision {
         if (agenteRetencion != null && !agenteRetencion.equals("")) {
             infoTributaria.setAgenteRetencion(agenteRetencion);
         }
+        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {
+            infoTributaria.setContribuyenteRimpe("CONTRIBUYENTE RÉGIMEN RIMPE");
+        }
         return infoTributaria;
     }
 
@@ -197,13 +200,6 @@ public class GenerarXMLGuiaRemision {
                     info.getCampoAdicional().add(detalle);
                 }
             }
-        }
-        
-        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {
-            GuiaRemision.InfoAdicional.CampoAdicional detalle = new GuiaRemision.InfoAdicional.CampoAdicional();
-            detalle.setNombre("Régimen");
-            detalle.setValue("Contribuyente régimen RIMPE");
-            info.getCampoAdicional().add(detalle);
         }
         return info;
     }
