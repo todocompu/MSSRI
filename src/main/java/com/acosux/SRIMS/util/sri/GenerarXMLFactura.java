@@ -401,6 +401,13 @@ public class GenerarXMLFactura {
             detalle.setValue(this.invVentas.getVtaObservaciones());
             info.getCampoAdicional().add(detalle);
         }
+        
+        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {	
+            Factura.InfoAdicional.CampoAdicional detalle = new Factura.InfoAdicional.CampoAdicional();	
+            detalle.setNombre("Régimen");	
+            detalle.setValue("Contribuyente régimen RIMPE");	
+            info.getCampoAdicional().add(detalle);	
+        }
         return info;
     }
 

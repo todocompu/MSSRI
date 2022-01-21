@@ -215,6 +215,13 @@ public class GenerarXMLNotaCredito {
             detalle.setValue((String) this.emisor.getParWebDocumentosElectronicos());
             info.getCampoAdicional().add(detalle);
         }
+        
+        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {	
+            NotaCredito.InfoAdicional.CampoAdicional detalle = new NotaCredito.InfoAdicional.CampoAdicional();	
+            detalle.setNombre("Régimen");	
+            detalle.setValue("Contribuyente régimen RIMPE");	
+            info.getCampoAdicional().add(detalle);	
+        }
         return info;
     }
 
