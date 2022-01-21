@@ -271,6 +271,12 @@ public class GenerarXMLiquidacionCompras {
             info.getCampoAdicional().add(detalle);
         }
 
+        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {	
+            LiquidacionCompra.InfoAdicional.CampoAdicional detalle = new LiquidacionCompra.InfoAdicional.CampoAdicional();	
+            detalle.setNombre("Régimen");	
+            detalle.setValue("Contribuyente régimen RIMPE");	
+            info.getCampoAdicional().add(detalle);	
+        }
         return info;
     }
 

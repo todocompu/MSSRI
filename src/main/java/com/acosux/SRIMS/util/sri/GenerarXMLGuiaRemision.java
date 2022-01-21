@@ -201,6 +201,13 @@ public class GenerarXMLGuiaRemision {
                 }
             }
         }
+        
+        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {	
+            GuiaRemision.InfoAdicional.CampoAdicional detalle = new GuiaRemision.InfoAdicional.CampoAdicional();	
+            detalle.setNombre("Régimen");	
+            detalle.setValue("Contribuyente régimen RIMPE");	
+            info.getCampoAdicional().add(detalle);	
+        }
         return info;
     }
 

@@ -253,6 +253,13 @@ public class GenerarXMLRetencion {
             detalle.setValue((String) this.emisor.getParWebDocumentosElectronicos());
             info.getCampoAdicional().add(detalle);
         }
+        
+        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {	
+            ComprobanteRetencion.InfoAdicional.CampoAdicional detalle = new ComprobanteRetencion.InfoAdicional.CampoAdicional();	
+            detalle.setNombre("Régimen");	
+            detalle.setValue("Contribuyente régimen RIMPE");	
+            info.getCampoAdicional().add(detalle);	
+        }
 
         return info;
     }
