@@ -81,7 +81,7 @@ public class GenerarXMLGuiaRemision {
             infoTributaria.setAgenteRetencion(agenteRetencion);
         }
         if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {
-            infoTributaria.setContribuyenteRimpe("CONTRIBUYENTE RÉGIMEN RIMPE");
+//            infoTributaria.setContribuyenteRimpe("CONTRIBUYENTE RÉGIMEN RIMPE");
         }
         return infoTributaria;
     }

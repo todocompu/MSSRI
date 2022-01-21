@@ -92,7 +92,7 @@ public class GenerarXMLRetencion {
         }
 
         if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {
-            this.infoTributaria.setContribuyenteRimpe("CONTRIBUYENTE RÉGIMEN RIMPE");
+//            this.infoTributaria.setContribuyenteRimpe("CONTRIBUYENTE REGIMEN RIMPE");
         }
 
         this.infoCompRetencion = this.factoryRetencion.createComprobanteRetencionInfoCompRetencion();

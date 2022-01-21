@@ -100,7 +100,7 @@ public class GenerarXMLFactura {
         this.infoTributaria.setDirMatriz(emisor.getDirEstablecimiento());
 
         if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {
-            this.infoTributaria.setContribuyenteRimpe("CONTRIBUYENTE RÉGIMEN RIMPE");
+//            this.infoTributaria.setContribuyenteRimpe("CONTRIBUYENTE RÉGIMEN RIMPE");
         }
         if (this.sisEmpresaParametros.getParAgenteRetencion() != null && !this.sisEmpresaParametros.getParAgenteRetencion().equals("")) {
             this.infoTributaria.setAgenteRetencion(sisEmpresaParametros.getParAgenteRetencion());
