@@ -90,7 +90,7 @@ public class GenerarXMLNotaCredito {
         this.infoTributaria.setSecuencial(invVentas.getVtaDocumentoNumero().substring(8));
         this.infoTributaria.setDirMatriz(this.emisor.getDireccionMatriz());
         if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {
-            this.infoTributaria.setContribuyenteRimpe("CONTRIBUYENTE RÉGIMEN RIMPE");
+//            this.infoTributaria.setContribuyenteRimpe("CONTRIBUYENTE RÉGIMEN RIMPE");
         }
 
         if (this.sisEmpresaParametros.getParAgenteRetencion() != null && !this.sisEmpresaParametros.getParAgenteRetencion().equals("")) {

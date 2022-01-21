@@ -11,7 +11,9 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "infoTributaria", propOrder = {"ambiente", "tipoEmision", "razonSocial", "nombreComercial", "ruc",
-    "claveAcceso", "codDoc", "estab", "ptoEmi", "secuencial", "dirMatriz", "regimenMicroempresas", "agenteRetencion", "contribuyenteRimpe"})
+    "claveAcceso", "codDoc", "estab", "ptoEmi", "secuencial", "dirMatriz", "regimenMicroempresas", "agenteRetencion"
+//        , "contribuyenteRimpe"
+})
 public class InfoTributaria {
 
     @XmlElement(required = true)
@@ -37,8 +39,8 @@ public class InfoTributaria {
     protected String dirMatriz;
 
     protected String regimenMicroempresas;
-    protected String contribuyenteRimpe;
     protected String agenteRetencion;
+//    protected String contribuyenteRimpe;
 
     public String getAmbiente() {
         return this.ambiente;
@@ -144,12 +146,12 @@ public class InfoTributaria {
         this.agenteRetencion = agenteRetencion;
     }
 
-    public String getContribuyenteRimpe() {
-        return contribuyenteRimpe;
-    }
-
-    public void setContribuyenteRimpe(String contribuyenteRimpe) {
-        this.contribuyenteRimpe = contribuyenteRimpe;
-    }
+//    public String getContribuyenteRimpe() {
+//        return contribuyenteRimpe;
+//    }
+//
+//    public void setContribuyenteRimpe(String contribuyenteRimpe) {
+//        this.contribuyenteRimpe = contribuyenteRimpe;
+//    }
 
 }
