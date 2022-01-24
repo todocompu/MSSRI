@@ -109,7 +109,7 @@ public class GenerarXMLNotaDebito {
         this.infoTributaria.setSecuencial(invVentas.getVtaDocumentoNumero().substring(8));
         this.infoTributaria.setDirMatriz(emisor.getDireccionMatriz());
         if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {
-            this.infoTributaria.setContribuyenteRimpe("CONTRIBUYENTE RÉGIMEN RIMPE");
+//            this.infoTributaria.setContribuyenteRimpe("CONTRIBUYENTE RÉGIMEN RIMPE");
         }
 
         if (this.sisEmpresaParametros.getParAgenteRetencion() != null && !this.sisEmpresaParametros.getParAgenteRetencion().equals("")) {
@@ -231,12 +231,12 @@ public class GenerarXMLNotaDebito {
             info.getCampoAdicional().add(detalle);
         }
         
-//        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {	
-//            NotaDebito.InfoAdicional.CampoAdicional detalle = new NotaDebito.InfoAdicional.CampoAdicional();	
-//            detalle.setNombre("Régimen");	
-//            detalle.setValue("Contribuyente régimen RIMPE");	
-//            info.getCampoAdicional().add(detalle);	
-//        }
+        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {	
+            NotaDebito.InfoAdicional.CampoAdicional detalle = new NotaDebito.InfoAdicional.CampoAdicional();	
+            detalle.setNombre("Régimen");	
+            detalle.setValue("Contribuyente régimen RIMPE");	
+            info.getCampoAdicional().add(detalle);	
+        }
         return info;
     }
 
