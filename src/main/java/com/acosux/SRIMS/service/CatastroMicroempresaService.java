@@ -6,6 +6,7 @@
 package com.acosux.SRIMS.service;
 
 import com.acosux.SRIMS.entidades.AnxCatastroMicroempresa;
+import com.acosux.SRIMS.entidades.AnxCatastroRimpe;
 import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +18,7 @@ public interface CatastroMicroempresaService {
 
     public boolean existeCatastroMicroEmpresa(String identificacion) throws Exception;
 
-    public boolean existeCatastroRimpe(String identificacion) throws Exception;
+    public AnxCatastroRimpe existeCatastroRimpe(String identificacion) throws Exception;
 
     @Transactional
     public String insertarListadoCatastroMicroempresa(List<AnxCatastroMicroempresa> listado, boolean permitirBorrar) throws Exception;

@@ -10,6 +10,6 @@ import com.acosux.SRIMS.util.dao.GenericDao;
 
 public interface CatastroRimpeDao extends GenericDao<AnxCatastroRimpe, Integer> {
 
-    public boolean existeCatastroRimpe(String codigo) throws Exception;
+    public AnxCatastroRimpe existeCatastroRimpe(String codigo) throws Exception;
 
 }

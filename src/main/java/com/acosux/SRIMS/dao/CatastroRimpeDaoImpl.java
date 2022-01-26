@@ -23,9 +23,9 @@ public class CatastroRimpeDaoImpl extends GenericDaoImpl<AnxCatastroRimpe, Integ
     private GenericSQLDao genericSQLDao;
 
     @Override
-    public boolean existeCatastroRimpe(String identificacion) throws Exception {
-        String sql = "SELECT COUNT(*)!=0 FROM anexo.anx_catastro_rimpe WHERE catr_ruc='" + identificacion + "'";
-        return (boolean) UtilsConversiones.convertir(genericSQLDao.obtenerObjetoPorSql(sql));
+    public AnxCatastroRimpe existeCatastroRimpe(String identificacion) throws Exception {
+        String sql = "SELECT * FROM anexo.anx_catastro_rimpe WHERE catr_ruc='" + identificacion + "' LIMIT 1";
+        return (AnxCatastroRimpe) genericSQLDao.obtenerObjetoPorSql(sql, AnxCatastroRimpe.class);
     }
 
 }

@@ -38,7 +38,7 @@ public class AnxCatastroRimpe implements Serializable {
     @Column(name = "catr_regimen")
     private String catrRegimen;
     @Column(name = "catr_negocio_popular")
-    private BigDecimal catrNegocioPopular;
+    private String catrNegocioPopular;
     @Column(name = "usr_empresa")
     private String usrEmpresa;
     @Column(name = "usr_codigo")
@@ -90,13 +90,14 @@ public class AnxCatastroRimpe implements Serializable {
         this.catrRegimen = catrRegimen;
     }
 
-    public BigDecimal getCatrNegocioPopular() {
+    public String getCatrNegocioPopular() {
         return catrNegocioPopular;
     }
 
-    public void setCatrNegocioPopular(BigDecimal catrNegocioPopular) {
+    public void setCatrNegocioPopular(String catrNegocioPopular) {
         this.catrNegocioPopular = catrNegocioPopular;
     }
+
 
     public String getUsrEmpresa() {
         return usrEmpresa;
