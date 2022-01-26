@@ -6,6 +6,7 @@
 package com.acosux.SRIMS.controller;
 
 import com.acosux.SRIMS.entidades.AnxCatastroMicroempresa;
+import com.acosux.SRIMS.entidades.AnxCatastroRimpe;
 import com.acosux.SRIMS.service.CatastroMicroempresaService;
 import com.acosux.SRIMS.util.RespuestaWebTO;
 import com.acosux.SRIMS.util.UtilsExcepciones;
@@ -66,15 +67,20 @@ public class CatastroController {
         }
         return resp;
     }
-    
+
     @RequestMapping(value = "/existeCatastroRimpe/{identificacion}", method = {RequestMethod.GET})
     public RespuestaWebTO existeCatastroRimpe(@PathVariable("identificacion") String identificacion) {
         RespuestaWebTO resp = new RespuestaWebTO();
         resp.setEstadoOperacion(RespuestaWebTO.EstadoOperacionEnum.ADVERTENCIA.getValor());
         try {
-            boolean respues = catastroMicroempresaService.existeCatastroRimpe(identificacion);
-            resp.setEstadoOperacion(RespuestaWebTO.EstadoOperacionEnum.EXITO.getValor());
-            resp.setExtraInfo(respues);
+            AnxCatastroRimpe respues = catastroMicroempresaService.existeCatastroRimpe(identificacion);
+            if (respues != null) {
+                resp.setEstadoOperacion(RespuestaWebTO.EstadoOperacionEnum.EXITO.getValor());
+                resp.setExtraInfo(respues);
+            } else {
+                resp.setEstadoOperacion(RespuestaWebTO.EstadoOperacionEnum.EXITO.getValor());
+                resp.setExtraInfo(false);
+            }
         } catch (Exception e) {
             resp.setEstadoOperacion(RespuestaWebTO.EstadoOperacionEnum.ERROR.getValor());
             resp.setOperacionMensaje(e.getMessage());
