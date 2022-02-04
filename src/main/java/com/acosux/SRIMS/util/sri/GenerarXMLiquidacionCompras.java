@@ -31,7 +31,7 @@ public class GenerarXMLiquidacionCompras {
     private LiquidacionCompra.InfoLiquidacionCompra infoLiquidacionCompra = null;
     private SisEmpresaParametros sisEmpresaParametros;
 
-    public LiquidacionCompra generarXMLiquidacionCompras(InvComprasTO invComprasTO, InvProveedor invProveedor, List<InvComprasDetalle> listInvComprasDetalle, 
+    public LiquidacionCompra generarXMLiquidacionCompras(InvComprasTO invComprasTO, InvProveedor invProveedor, List<InvComprasDetalle> listInvComprasDetalle,
             String claveDeAcceso, Emisor emisor, String agenteRetencion, SisEmpresaParametros sisEmpresaParametros) throws Exception {
         this.invProveedor = invProveedor;
         this.invComprasTO = invComprasTO;
@@ -255,7 +255,12 @@ public class GenerarXMLiquidacionCompras {
         }
 
         if (this.invComprasTO.getCompFormaPago().equalsIgnoreCase("POR PAGAR")
-                && (emisor.getRuc().equalsIgnoreCase("0993013447001") || emisor.getRuc().equalsIgnoreCase("0993046590001") || emisor.getRuc().equalsIgnoreCase("0992879254001"))) {
+                && (emisor.getRuc().equalsIgnoreCase("0993013447001")
+                || emisor.getRuc().equalsIgnoreCase("0993046590001")
+                || emisor.getRuc().equalsIgnoreCase("0791702070001") //NET2
+                || emisor.getRuc().equalsIgnoreCase("0791702054001") //NET3
+                || emisor.getRuc().equalsIgnoreCase("0791755093001") //NET1
+                || emisor.getRuc().equalsIgnoreCase("0992879254001"))) {
             //SOLO SI ES "MARAQUATIK" o "BALANCEADOS DEL PACIFICO BAPACIF SA" o "COPACIGULF"
             LiquidacionCompra.InfoAdicional.CampoAdicional detalle = new LiquidacionCompra.InfoAdicional.CampoAdicional();
             detalle.setNombre("Fecha Vencimiento");
@@ -271,11 +276,11 @@ public class GenerarXMLiquidacionCompras {
             info.getCampoAdicional().add(detalle);
         }
 
-        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {	
-            LiquidacionCompra.InfoAdicional.CampoAdicional detalle = new LiquidacionCompra.InfoAdicional.CampoAdicional();	
-            detalle.setNombre("Régimen");	
-            detalle.setValue("Contribuyente régimen RIMPE");	
-            info.getCampoAdicional().add(detalle);	
+        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {
+            LiquidacionCompra.InfoAdicional.CampoAdicional detalle = new LiquidacionCompra.InfoAdicional.CampoAdicional();
+            detalle.setNombre("Régimen");
+            detalle.setValue("Contribuyente régimen RIMPE");
+            info.getCampoAdicional().add(detalle);
         }
         return info;
     }
