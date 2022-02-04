@@ -6,7 +6,6 @@
 package com.acosux.SRIMS.dao;
 
 import com.acosux.SRIMS.entidades.AnxCatastroRimpe;
-import com.acosux.SRIMS.util.UtilsConversiones;
 import com.acosux.SRIMS.util.dao.GenericDaoImpl;
 import com.acosux.SRIMS.util.dao.GenericSQLDao;
 import org.springframework.beans.factory.annotation.Autowired;

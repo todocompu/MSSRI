@@ -385,7 +385,13 @@ public class GenerarXMLFactura {
         }
 
         if (this.invVentas.getVtaFormaPago().equalsIgnoreCase("POR PAGAR")
-                && (this.emisor.getRuc().equalsIgnoreCase("0993013447001") || this.emisor.getRuc().equalsIgnoreCase("0993046590001") || this.emisor.getRuc().equalsIgnoreCase("0992879254001") || this.emisor.getRuc().equalsIgnoreCase("0993176907001"))) {
+                && (this.emisor.getRuc().equalsIgnoreCase("0993013447001") 
+                || this.emisor.getRuc().equalsIgnoreCase("0993046590001") 
+                || this.emisor.getRuc().equalsIgnoreCase("0992879254001") 
+                || this.emisor.getRuc().equalsIgnoreCase("0791702070001") //NET2
+                || this.emisor.getRuc().equalsIgnoreCase("0791702054001") //NET3
+                || this.emisor.getRuc().equalsIgnoreCase("0791755093001") //NET1
+                || this.emisor.getRuc().equalsIgnoreCase("0993176907001"))) {
             //SOLO SI ES "MARAQUATIK" o "BALANCEADOS DEL PACIFICO BAPACIF SA" o "COPACIGULF o "INSUMOS DEL MAR MARAQUATIK"
             Factura.InfoAdicional.CampoAdicional detalle = new Factura.InfoAdicional.CampoAdicional();
             detalle.setNombre("Fecha Vencimiento");
