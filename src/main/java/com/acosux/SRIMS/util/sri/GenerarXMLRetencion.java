@@ -92,7 +92,7 @@ public class GenerarXMLRetencion {
         }
 
         if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {
-//            this.infoTributaria.setContribuyenteRimpe("CONTRIBUYENTE RÉGIMEN RIMPE");
+            this.infoTributaria.setContribuyenteRimpe("CONTRIBUYENTE RÉGIMEN RIMPE");
         }
 
         this.infoCompRetencion = this.factoryRetencion.createComprobanteRetencionInfoCompRetencion();
@@ -254,12 +254,12 @@ public class GenerarXMLRetencion {
             info.getCampoAdicional().add(detalle);
         }
         
-        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {	
-            ComprobanteRetencion.InfoAdicional.CampoAdicional detalle = new ComprobanteRetencion.InfoAdicional.CampoAdicional();	
-            detalle.setNombre("Régimen");	
-            detalle.setValue("Contribuyente régimen RIMPE");	
-            info.getCampoAdicional().add(detalle);	
-        }
+//        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {	
+//            ComprobanteRetencion.InfoAdicional.CampoAdicional detalle = new ComprobanteRetencion.InfoAdicional.CampoAdicional();	
+//            detalle.setNombre("Régimen");	
+//            detalle.setValue("Contribuyente régimen RIMPE");	
+//            info.getCampoAdicional().add(detalle);	
+//        }
 
         return info;
     }
