@@ -12,6 +12,7 @@ import com.acosux.SRIMS.entidades.AnxGuiaRemisionElectronicaTO;
 import com.acosux.SRIMS.entidades.AnxLiquidacionComprasElectronicaTO;
 import com.acosux.SRIMS.entidades.AnxValidezComprobanteElectronico;
 import com.acosux.SRIMS.entidades.AnxVentaElectronicaTO;
+import com.acosux.SRIMS.entidades.AnxVentaReembolsoTO;
 import com.acosux.SRIMS.entidades.InvCliente;
 import com.acosux.SRIMS.entidades.InvComprasDetalle;
 import com.acosux.SRIMS.entidades.InvComprasTO;
@@ -255,6 +256,7 @@ public class ConsultasSRIController {
         InvVentas invVentas = UtilsJSON.jsonToObjeto(InvVentas.class, map.get("invVentas"));
         InvVentaGuiaRemision guia = UtilsJSON.jsonToObjeto(InvVentaGuiaRemision.class, map.get("guia"));
         List<InvListaDetalleVentasTO> listaInvVentasDetalleTO = UtilsJSON.jsonToList(InvListaDetalleVentasTO.class, map.get("listaInvVentasDetalleTO"));
+        List<AnxVentaReembolsoTO> listaAnxVentaReembolsoTO = UtilsJSON.jsonToList(AnxVentaReembolsoTO.class, map.get("listaAnxVentaReembolsoTO"));
         InvCliente invCliente = UtilsJSON.jsonToObjeto(InvCliente.class, map.get("invCliente"));
         SisEmpresaParametros sisEmpresaParametros = UtilsJSON.jsonToObjeto(SisEmpresaParametros.class, map.get("sisEmpresaParametros"));
         Date fechaComplemento = UtilsJSON.jsonToObjeto(Date.class, map.get("fechaComplemento"));
@@ -265,7 +267,11 @@ public class ConsultasSRIController {
             Object objComprobante = null;
             if (tipoComprobante.compareTo(TipoComprobanteEnum.FACTURA.getCode()) == 0) {
                 GenerarXMLFactura generarXMLFactura = new GenerarXMLFactura();
-                objComprobante = generarXMLFactura.generarComprobanteFactura(invVentas, invCliente, listaInvVentasDetalleTO, claveAcceso, emisor, tipoIdentificacion, guia, direccion, sisEmpresaParametros);
+                if (invVentas.isVtaReembolso()) {
+                    objComprobante = generarXMLFactura.generarComprobanteFacturaReembolso(invVentas, invCliente, listaInvVentasDetalleTO, claveAcceso, emisor, tipoIdentificacion, guia, direccion, listaAnxVentaReembolsoTO, sisEmpresaParametros);
+                } else {
+                    objComprobante = generarXMLFactura.generarComprobanteFactura(invVentas, invCliente, listaInvVentasDetalleTO, claveAcceso, emisor, tipoIdentificacion, guia, direccion, sisEmpresaParametros);
+                }
             } else if (tipoComprobante.compareTo(TipoComprobanteEnum.NOTA_DE_CREDITO.getCode()) == 0) {
                 GenerarXMLNotaCredito generarXMLNotaCredito = new GenerarXMLNotaCredito();
                 objComprobante = generarXMLNotaCredito.generarComprobanteNotaCredito(invVentas, invCliente, listaInvVentasDetalleTO, claveAcceso, emisor, tipoIdentificacion, complementoDocumentoNumero, fechaComplemento, sisEmpresaParametros);
