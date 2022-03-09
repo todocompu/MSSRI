@@ -184,6 +184,7 @@ public class GenerarXMLFactura {
         Factura.InfoFactura.TotalConImpuestos respuesta = this.facturaFactory
                 .createFacturaInfoFacturaTotalConImpuestos();
         Factura.InfoFactura.TotalConImpuestos.TotalImpuesto impuesto;
+        ig()
         // iva 0%
         if (parcialCero.compareTo(BigDecimal.ZERO) > 0) {
             impuesto = new Factura.InfoFactura.TotalConImpuestos.TotalImpuesto();
@@ -426,6 +427,8 @@ public class GenerarXMLFactura {
         if (llevaIva && ivaVigente.compareTo(new BigDecimal("12.00")) == 0) {
             codigoPorcentaje = "2";
         } else if (llevaIva && ivaVigente.compareTo(new BigDecimal("14.00")) == 0) {
+            codigoPorcentaje = "3";
+        } else if (llevaIva && ivaVigente.compareTo(new BigDecimal("8.00")) == 0) {
             codigoPorcentaje = "3";
         }
         return codigoPorcentaje;
