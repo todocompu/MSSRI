@@ -184,7 +184,6 @@ public class GenerarXMLFactura {
         Factura.InfoFactura.TotalConImpuestos respuesta = this.facturaFactory
                 .createFacturaInfoFacturaTotalConImpuestos();
         Factura.InfoFactura.TotalConImpuestos.TotalImpuesto impuesto;
-        ig()
         // iva 0%
         if (parcialCero.compareTo(BigDecimal.ZERO) > 0) {
             impuesto = new Factura.InfoFactura.TotalConImpuestos.TotalImpuesto();
