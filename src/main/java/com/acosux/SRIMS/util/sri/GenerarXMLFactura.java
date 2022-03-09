@@ -427,6 +427,8 @@ public class GenerarXMLFactura {
             codigoPorcentaje = "2";
         } else if (llevaIva && ivaVigente.compareTo(new BigDecimal("14.00")) == 0) {
             codigoPorcentaje = "3";
+        } else if (llevaIva && ivaVigente.compareTo(new BigDecimal("8.00")) == 0) {
+            codigoPorcentaje = "3";
         }
         return codigoPorcentaje;
     }
