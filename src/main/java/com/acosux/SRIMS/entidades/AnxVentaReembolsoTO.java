@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Transient;
 
 /**
  *
@@ -51,14 +50,8 @@ public class AnxVentaReembolsoTO implements Serializable {
     private String provRazonSocial;
     @Column(name = "prov_id_numero")
     private String provIdNumero;
-    @Column(name = "comp_empresa")
-    private String compEmpresa;
-    @Column(name = "comp_periodo")
-    private String compPeriodo;
-    @Column(name = "comp_motivo")
-    private String compMotivo;
-    @Column(name = "comp_numero")
-    private String compNumero;
+    @Column(name = "prov_extranjero_tipo")
+    private String provExtranjeroTipo;
     @Column(name = "tc_abreviatura")
     private String auxDocTipoAbreviatura;
 
@@ -70,8 +63,18 @@ public class AnxVentaReembolsoTO implements Serializable {
     private String vtaMotivo;
     @Column(name = "vta_numero")
     private String vtaNumero;
-    @Transient
-    private String provCodigoCopia;
+
+    @Column(name = "comp_empresa")
+    private String compEmpresa;
+    @Column(name = "comp_periodo")
+    private String compPeriodo;
+    @Column(name = "comp_motivo")
+    private String compMotivo;
+    @Column(name = "comp_numero")
+    private String compNumero;
+
+    @Column(name = "reemb_iva_vigente")
+    private BigDecimal reembIvaVigente;
 
     public AnxVentaReembolsoTO() {
     }
@@ -172,46 +175,6 @@ public class AnxVentaReembolsoTO implements Serializable {
         this.provCodigo = provCodigo;
     }
 
-    public String getCompEmpresa() {
-        return compEmpresa;
-    }
-
-    public void setCompEmpresa(String compEmpresa) {
-        this.compEmpresa = compEmpresa;
-    }
-
-    public String getCompPeriodo() {
-        return compPeriodo;
-    }
-
-    public void setCompPeriodo(String compPeriodo) {
-        this.compPeriodo = compPeriodo;
-    }
-
-    public String getCompMotivo() {
-        return compMotivo;
-    }
-
-    public void setCompMotivo(String compMotivo) {
-        this.compMotivo = compMotivo;
-    }
-
-    public String getCompNumero() {
-        return compNumero;
-    }
-
-    public void setCompNumero(String compNumero) {
-        this.compNumero = compNumero;
-    }
-
-    public String getAuxDocTipoAbreviatura() {
-        return auxDocTipoAbreviatura;
-    }
-
-    public void setAuxDocTipoAbreviatura(String auxDocTipoAbreviatura) {
-        this.auxDocTipoAbreviatura = auxDocTipoAbreviatura;
-    }
-
     public String getProvIdTipo() {
         return provIdTipo;
     }
@@ -234,6 +197,14 @@ public class AnxVentaReembolsoTO implements Serializable {
 
     public void setProvIdNumero(String provIdNumero) {
         this.provIdNumero = provIdNumero;
+    }
+
+    public String getAuxDocTipoAbreviatura() {
+        return auxDocTipoAbreviatura;
+    }
+
+    public void setAuxDocTipoAbreviatura(String auxDocTipoAbreviatura) {
+        this.auxDocTipoAbreviatura = auxDocTipoAbreviatura;
     }
 
     public String getVtaEmpresa() {
@@ -268,12 +239,52 @@ public class AnxVentaReembolsoTO implements Serializable {
         this.vtaNumero = vtaNumero;
     }
 
-    public String getProvCodigoCopia() {
-        return provCodigoCopia;
+    public String getCompEmpresa() {
+        return compEmpresa;
     }
 
-    public void setProvCodigoCopia(String provCodigoCopia) {
-        this.provCodigoCopia = provCodigoCopia;
+    public void setCompEmpresa(String compEmpresa) {
+        this.compEmpresa = compEmpresa;
+    }
+
+    public String getCompPeriodo() {
+        return compPeriodo;
+    }
+
+    public void setCompPeriodo(String compPeriodo) {
+        this.compPeriodo = compPeriodo;
+    }
+
+    public String getCompMotivo() {
+        return compMotivo;
+    }
+
+    public void setCompMotivo(String compMotivo) {
+        this.compMotivo = compMotivo;
+    }
+
+    public String getCompNumero() {
+        return compNumero;
+    }
+
+    public void setCompNumero(String compNumero) {
+        this.compNumero = compNumero;
+    }
+
+    public BigDecimal getReembIvaVigente() {
+        return reembIvaVigente;
+    }
+
+    public void setReembIvaVigente(BigDecimal reembIvaVigente) {
+        this.reembIvaVigente = reembIvaVigente;
+    }
+
+    public String getProvExtranjeroTipo() {
+        return provExtranjeroTipo;
+    }
+
+    public void setProvExtranjeroTipo(String provExtranjeroTipo) {
+        this.provExtranjeroTipo = provExtranjeroTipo;
     }
 
 }

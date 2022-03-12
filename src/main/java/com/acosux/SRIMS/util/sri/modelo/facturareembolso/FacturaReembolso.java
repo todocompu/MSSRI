@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlValue;
 
 /**
  *
@@ -701,7 +702,7 @@ public class FacturaReembolso {
 
                     protected String codigo;
                     protected String codigoPorcentaje;
-                    protected String tarifa;
+                    protected BigDecimal tarifa;
                     protected BigDecimal baseImponibleReembolso;
                     protected BigDecimal impuestoReembolso;
 
@@ -721,11 +722,11 @@ public class FacturaReembolso {
                         this.codigoPorcentaje = codigoPorcentaje;
                     }
 
-                    public String getTarifa() {
+                    public BigDecimal getTarifa() {
                         return tarifa;
                     }
 
-                    public void setTarifa(String tarifa) {
+                    public void setTarifa(BigDecimal tarifa) {
                         this.tarifa = tarifa;
                     }
 
@@ -749,7 +750,49 @@ public class FacturaReembolso {
             }
         }
     }
-    protected Factura.InfoAdicional infoAdicional;
+    protected InfoAdicional infoAdicional;
+
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {"campoAdicional"})
+    public static class InfoAdicional {
+
+        @XmlElement(required = true)
+        protected List<CampoAdicional> campoAdicional;
+
+        public List<CampoAdicional> getCampoAdicional() {
+            if (this.campoAdicional == null) {
+                this.campoAdicional = new ArrayList();
+            }
+            return this.campoAdicional;
+        }
+
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "", propOrder = {"value"})
+        public static class CampoAdicional {
+
+            @XmlValue
+            protected String value;
+
+            @XmlAttribute
+            protected String nombre;
+
+            public String getValue() {
+                return this.value;
+            }
+
+            public void setValue(String value) {
+                this.value = value;
+            }
+
+            public String getNombre() {
+                return this.nombre;
+            }
+
+            public void setNombre(String value) {
+                this.nombre = value;
+            }
+        }
+    }
 
     public InfoTributaria getInfoTributaria() {
         return infoTributaria;
@@ -783,11 +826,11 @@ public class FacturaReembolso {
         this.reembolsos = reembolsos;
     }
 
-    public Factura.InfoAdicional getInfoAdicional() {
+    public InfoAdicional getInfoAdicional() {
         return infoAdicional;
     }
 
-    public void setInfoAdicional(Factura.InfoAdicional infoAdicional) {
+    public void setInfoAdicional(InfoAdicional infoAdicional) {
         this.infoAdicional = infoAdicional;
     }
 

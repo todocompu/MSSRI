@@ -39,6 +39,7 @@ import com.acosux.SRIMS.util.UtilsArchivos;
 import com.acosux.SRIMS.util.UtilsJSON;
 import com.acosux.SRIMS.util.sri.AutorizacionComprobantesWs;
 import com.acosux.SRIMS.util.sri.GenerarXMLFactura;
+import com.acosux.SRIMS.util.sri.GenerarXMLFacturaReembolso;
 import com.acosux.SRIMS.util.sri.GenerarXMLGuiaRemision;
 import com.acosux.SRIMS.util.sri.GenerarXMLNotaCredito;
 import com.acosux.SRIMS.util.sri.GenerarXMLNotaDebito;
@@ -267,8 +268,9 @@ public class ConsultasSRIController {
             Object objComprobante = null;
             if (tipoComprobante.compareTo(TipoComprobanteEnum.FACTURA.getCode()) == 0) {
                 GenerarXMLFactura generarXMLFactura = new GenerarXMLFactura();
-                if (invVentas.isVtaReembolso()) {
-                    objComprobante = generarXMLFactura.generarComprobanteFacturaReembolso(invVentas, invCliente, listaInvVentasDetalleTO, claveAcceso, emisor, tipoIdentificacion, guia, direccion, listaAnxVentaReembolsoTO, sisEmpresaParametros);
+                if (invVentas.isVtaReembolso() && listaAnxVentaReembolsoTO != null && listaAnxVentaReembolsoTO.size() > 0) {
+                    GenerarXMLFacturaReembolso xmlReembolso = new GenerarXMLFacturaReembolso();
+                    objComprobante = xmlReembolso.generarComprobanteFacturaReembolso(invVentas, invCliente, listaInvVentasDetalleTO, claveAcceso, emisor, tipoIdentificacion, direccion, listaAnxVentaReembolsoTO, sisEmpresaParametros);
                 } else {
                     objComprobante = generarXMLFactura.generarComprobanteFactura(invVentas, invCliente, listaInvVentasDetalleTO, claveAcceso, emisor, tipoIdentificacion, guia, direccion, sisEmpresaParametros);
                 }
