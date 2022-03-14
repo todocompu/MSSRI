@@ -14,6 +14,7 @@ import com.acosux.SRIMS.util.sri.RespuestaSolicitud;
 import com.acosux.SRIMS.util.sri.XAdESBESSignature;
 import com.acosux.SRIMS.util.sri.XStreamUtil;
 import com.acosux.SRIMS.util.sri.modelo.factura.Factura;
+import com.acosux.SRIMS.util.sri.modelo.facturareembolso.FacturaReembolso;
 import com.acosux.SRIMS.util.sri.modelo.guiaremision.GuiaRemision;
 import com.acosux.SRIMS.util.sri.modelo.liquidacioncompra.LiquidacionCompra;
 import com.acosux.SRIMS.util.sri.modelo.notadebito.NotaDebito;
@@ -301,6 +302,8 @@ public class ComprobantesUtil {
             c = LiquidacionCompra.class;
         } else if (comprobante instanceof GuiaRemision) {
             c = GuiaRemision.class;
+        } else if (comprobante instanceof FacturaReembolso) {
+            c = FacturaReembolso.class;
         }
         Java2XML.objetoTOxml(c, pathArchivo, comprobante);
         return respuesta;

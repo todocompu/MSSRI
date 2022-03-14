@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 /**
  *
@@ -46,12 +47,12 @@ public class AnxVentaReembolsoTO implements Serializable {
     private String provCodigo;
     @Column(name = "prov_id_tipo")
     private String provIdTipo;
+    @Column(name = "prov_extranjero_tipo")
+    private String provExtranjeroTipo;
     @Column(name = "prov_razon_social")
     private String provRazonSocial;
     @Column(name = "prov_id_numero")
     private String provIdNumero;
-    @Column(name = "prov_extranjero_tipo")
-    private String provExtranjeroTipo;
     @Column(name = "tc_abreviatura")
     private String auxDocTipoAbreviatura;
 
@@ -73,6 +74,8 @@ public class AnxVentaReembolsoTO implements Serializable {
     @Column(name = "comp_numero")
     private String compNumero;
 
+    @Transient
+    private String provCodigoCopia;
     @Column(name = "reemb_iva_vigente")
     private BigDecimal reembIvaVigente;
 
@@ -183,6 +186,14 @@ public class AnxVentaReembolsoTO implements Serializable {
         this.provIdTipo = provIdTipo;
     }
 
+    public String getProvExtranjeroTipo() {
+        return provExtranjeroTipo;
+    }
+
+    public void setProvExtranjeroTipo(String provExtranjeroTipo) {
+        this.provExtranjeroTipo = provExtranjeroTipo;
+    }
+
     public String getProvRazonSocial() {
         return provRazonSocial;
     }
@@ -271,20 +282,20 @@ public class AnxVentaReembolsoTO implements Serializable {
         this.compNumero = compNumero;
     }
 
+    public String getProvCodigoCopia() {
+        return provCodigoCopia;
+    }
+
+    public void setProvCodigoCopia(String provCodigoCopia) {
+        this.provCodigoCopia = provCodigoCopia;
+    }
+
     public BigDecimal getReembIvaVigente() {
         return reembIvaVigente;
     }
 
     public void setReembIvaVigente(BigDecimal reembIvaVigente) {
         this.reembIvaVigente = reembIvaVigente;
-    }
-
-    public String getProvExtranjeroTipo() {
-        return provExtranjeroTipo;
-    }
-
-    public void setProvExtranjeroTipo(String provExtranjeroTipo) {
-        this.provExtranjeroTipo = provExtranjeroTipo;
     }
 
 }

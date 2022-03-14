@@ -25,6 +25,7 @@ public class Java2XML {
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             jaxbMarshaller.marshal(obj, new File(ruta));
         } catch (JAXBException e) {
+            System.out.println("Erro=>" + e.toString());
         }
     }
 }

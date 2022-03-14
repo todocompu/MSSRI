@@ -6,7 +6,6 @@
 package com.acosux.SRIMS.util.sri.modelo.facturareembolso;
 
 import com.acosux.SRIMS.util.sri.modelo.InfoTributaria;
-import com.acosux.SRIMS.util.sri.modelo.factura.Factura;
 import com.acosux.SRIMS.util.sri.modelo.factura.ImpuestoFactura;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -42,7 +41,7 @@ public class FacturaReembolso {
     @XmlElement(required = true)
     protected InfoTributaria infoTributaria;
     @XmlElement(required = true)
-    protected Factura.InfoFactura infoFactura;
+    protected InfoFactura infoFactura;
 
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
@@ -408,7 +407,7 @@ public class FacturaReembolso {
             @XmlElement(required = true)
             protected BigDecimal descuento;
             @XmlElement(required = true)
-            protected BigDecimal precioTotalSinImpuesto;
+            protected BigDecimal precioTotalSinImpuestos;
             protected DetallesAdicionales detallesAdicionales;
             @XmlElement(required = true)
             protected Impuestos impuestos;
@@ -461,12 +460,12 @@ public class FacturaReembolso {
                 this.descuento = value;
             }
 
-            public BigDecimal getPrecioTotalSinImpuesto() {
-                return this.precioTotalSinImpuesto;
+            public BigDecimal getPrecioTotalSinImpuestos() {
+                return this.precioTotalSinImpuestos;
             }
 
-            public void setPrecioTotalSinImpuesto(BigDecimal value) {
-                this.precioTotalSinImpuesto = value;
+            public void setPrecioTotalSinImpuestos(BigDecimal value) {
+                this.precioTotalSinImpuestos = value;
             }
 
             public DetallesAdicionales getDetallesAdicionales() {
@@ -569,7 +568,6 @@ public class FacturaReembolso {
             "codDocReembolso",
             "estabDocReembolso",
             "ptoEmiDocReembolso",
-            "detallesAdicionales",
             "secuencialDocReembolso",
             "fechaEmisionDocReembolso",
             "numeroautorizacionDocReemb",
@@ -802,11 +800,11 @@ public class FacturaReembolso {
         this.infoTributaria = infoTributaria;
     }
 
-    public Factura.InfoFactura getInfoFactura() {
+    public InfoFactura getInfoFactura() {
         return infoFactura;
     }
 
-    public void setInfoFactura(Factura.InfoFactura infoFactura) {
+    public void setInfoFactura(InfoFactura infoFactura) {
         this.infoFactura = infoFactura;
     }
 
