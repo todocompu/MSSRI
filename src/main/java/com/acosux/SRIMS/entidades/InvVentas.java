@@ -33,6 +33,7 @@ public class InvVentas implements Serializable {
     private BigDecimal vtaMontoIce;
     private String cliCodigoEstablecimiento;
     private String usrCodigo;
+    private boolean vtaReembolso;
 
     public InvVentas() {
     }
@@ -219,6 +220,14 @@ public class InvVentas implements Serializable {
 
     public void setUsrCodigo(String usrCodigo) {
         this.usrCodigo = usrCodigo;
+    }
+
+    public boolean isVtaReembolso() {
+        return vtaReembolso;
+    }
+
+    public void setVtaReembolso(boolean vtaReembolso) {
+        this.vtaReembolso = vtaReembolso;
     }
 
 }
