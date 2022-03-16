@@ -56,11 +56,11 @@ public class FacturaReembolso {
         "direccionComprador",//nuevo campo
         "totalSinImpuestos",
         "totalDescuento",
-        "codDocReemb",//nuevo campo
+        "codDocReembolso",//nuevo campo
         "totalComprobantesReembolso",//nuevo campo
         "totalBaseImponibleReembolso",//nuevo campo
         "totalImpuestoReembolso",//nuevo campo
-        "totalConImpuesto",
+        "totalConImpuestos",
         "propina",
         "importeTotal",
         "moneda",
@@ -85,12 +85,12 @@ public class FacturaReembolso {
         protected BigDecimal totalSinImpuestos;
         @XmlElement(required = true)
         protected BigDecimal totalDescuento;
-        protected String codDocReemb;//nuevo campo
+        protected Integer codDocReembolso;//nuevo campo
         protected BigDecimal totalComprobantesReembolso;//nuevo campo
         protected BigDecimal totalBaseImponibleReembolso;//nuevo campo
         protected BigDecimal totalImpuestoReembolso;//nuevo campo
         @XmlElement(required = true)
-        protected TotalConImpuesto totalConImpuesto;
+        protected TotalConImpuesto totalConImpuestos;
 
         @XmlElement(required = true)
         protected Pagos pagos;
@@ -182,12 +182,12 @@ public class FacturaReembolso {
             this.totalDescuento = value;
         }
 
-        public TotalConImpuesto getTotalConImpuesto() {
-            return this.totalConImpuesto;
+        public TotalConImpuesto getTotalConImpuestos() {
+            return totalConImpuestos;
         }
 
-        public void setTotalConImpuesto(TotalConImpuesto value) {
-            this.totalConImpuesto = value;
+        public void setTotalConImpuestos(TotalConImpuesto totalConImpuestos) {
+            this.totalConImpuestos = totalConImpuestos;
         }
 
         public Pagos getPagos() {
@@ -230,12 +230,12 @@ public class FacturaReembolso {
             this.direccionComprador = direccionComprador;
         }
 
-        public String getCodDocReemb() {
-            return codDocReemb;
+        public Integer getCodDocReembolso() {
+            return codDocReembolso;
         }
 
-        public void setCodDocReemb(String codDocReemb) {
-            this.codDocReemb = codDocReemb;
+        public void setCodDocReembolso(Integer codDocReembolso) {
+            this.codDocReembolso = codDocReembolso;
         }
 
         public BigDecimal getTotalComprobantesReembolso() {
@@ -390,7 +390,7 @@ public class FacturaReembolso {
             "cantidad",
             "precioUnitario",
             "descuento",
-            "precioTotalSinImpuestos",
+            "precioTotalSinImpuesto",
             "detallesAdicionales",
             "impuestos"})
         public static class Detalle {
@@ -407,7 +407,7 @@ public class FacturaReembolso {
             @XmlElement(required = true)
             protected BigDecimal descuento;
             @XmlElement(required = true)
-            protected BigDecimal precioTotalSinImpuestos;
+            protected BigDecimal precioTotalSinImpuesto;
             protected DetallesAdicionales detallesAdicionales;
             @XmlElement(required = true)
             protected Impuestos impuestos;
@@ -460,12 +460,12 @@ public class FacturaReembolso {
                 this.descuento = value;
             }
 
-            public BigDecimal getPrecioTotalSinImpuestos() {
-                return this.precioTotalSinImpuestos;
+            public BigDecimal getPrecioTotalSinImpuesto() {
+                return this.precioTotalSinImpuesto;
             }
 
-            public void setPrecioTotalSinImpuestos(BigDecimal value) {
-                this.precioTotalSinImpuestos = value;
+            public void setPrecioTotalSinImpuesto(BigDecimal value) {
+                this.precioTotalSinImpuesto = value;
             }
 
             public DetallesAdicionales getDetallesAdicionales() {

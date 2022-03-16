@@ -1,5 +1,6 @@
 package com.acosux.SRIMS.util.sri;
 
+import com.acosux.SRIMS.entidades.AnxVentaExportacion;
 import com.acosux.SRIMS.entidades.InvCliente;
 import com.acosux.SRIMS.entidades.InvListaDetalleVentasTO;
 import com.acosux.SRIMS.entidades.InvVentaGuiaRemision;
@@ -35,10 +36,11 @@ public class GenerarXMLFactura {
     private java.math.BigDecimal cero = new java.math.BigDecimal("0.00");
     private String direccion;
     private SisEmpresaParametros sisEmpresaParametros;
+    private AnxVentaExportacion exportacion;
 
     public Factura generarComprobanteFactura(InvVentas invVentas, InvCliente invCliente,
             List<InvListaDetalleVentasTO> listaInvVentasDetalleTO, String claveDeAcceso, Emisor emisor,
-            String codigoTipoTransaccion, InvVentaGuiaRemision guia, String direccion,
+            String codigoTipoTransaccion, InvVentaGuiaRemision guia, String direccion, AnxVentaExportacion exportacion,
             SisEmpresaParametros sisEmpresaParametros) throws Exception {
         this.invVentas = invVentas;
         this.invCliente = invCliente;
@@ -49,6 +51,7 @@ public class GenerarXMLFactura {
         this.facturaFactory = new ObjectFactoryFactura();
         this.invVentaGuiaRemision = guia;
         this.sisEmpresaParametros = sisEmpresaParametros;
+        this.exportacion = exportacion;
         Factura factura = null;
         this.direccion = direccion;
 
@@ -115,12 +118,30 @@ public class GenerarXMLFactura {
             this.infoFactura.setContribuyenteEspecial(emisor.getContribuyenteEspecial());
         }
         this.infoFactura.setObligadoContabilidad(emisor.getLlevaContabilidad());
+        //exportacion
+        if (this.exportacion != null) {
+            this.infoFactura.setComercioExterior("EXPORTADOR");
+            this.infoFactura.setIncoTermFactura("FOB");
+            this.infoFactura.setLugarIncoTerm("");
+            this.infoFactura.setPaisOrigen(593);//Ecuador
+            this.infoFactura.setPuertoEmbarque("");
+            this.infoFactura.setPuertoDestino("");
+            this.infoFactura.setPaisDestino(null);
+            this.infoFactura.setPaisAdquisicion(null);
+        }
+        //****
         this.infoFactura.setTipoIdentificacionComprador(codigoTipoTransaccion);
         this.infoFactura.setRazonSocialComprador(invCliente.getCliRazonSocial());
         this.infoFactura.setIdentificacionComprador(invCliente.getCliIdNumero() == null ? "9999999999999" : invCliente.getCliIdNumero());
         this.infoFactura.setTotalSinImpuestos(UtilsArchivos.redondeoDecimalBigDecimal(
                 invVentas.getVtaSubtotalBase0().add(invVentas.getVtaSubtotalBaseImponible()), 2,
                 java.math.RoundingMode.HALF_UP));
+
+        //exportacion
+        if (this.exportacion != null) {
+            this.infoFactura.setIncoTermTotalSinImpuestos("FOB");
+        }
+        //****
         this.infoFactura.setTotalDescuento(UtilsArchivos.redondeoDecimalBigDecimal(invVentas.getVtaDescuentoBase0()
                 .add(invVentas.getVtaDescuentoBaseImponible()).add(invVentas.getVtaDescuentoBaseExenta()).// getVtaDescuentoGeneralBase0
                 add(invVentas.getVtaDescuentoBaseNoObjeto())).add(cero));
@@ -130,6 +151,14 @@ public class GenerarXMLFactura {
                 UtilsArchivos.redondeoDecimalBigDecimal(invVentas.getVtaSubtotalBaseImponible(), 2, // el xml no admite mas decimales
                         java.math.RoundingMode.HALF_UP)));
         this.infoFactura.setPropina(cero);
+        //exportacion
+        if (this.exportacion != null) {
+            this.infoFactura.setFleteInternacional(null);
+            this.infoFactura.setSeguroInternacional(null);
+            this.infoFactura.setGastosAduaneros(null);
+            this.infoFactura.setGastosTransporteOtros(null);
+        }
+        //****
         this.infoFactura.setImporteTotal(invVentas.getVtaTotal());
         this.infoFactura.setMoneda("DOLAR");
         if (invVentas.getVtaPagadoEfectivo().compareTo(cero) != 0
@@ -385,9 +414,9 @@ public class GenerarXMLFactura {
         }
 
         if (this.invVentas.getVtaFormaPago().equalsIgnoreCase("POR PAGAR")
-                && (this.emisor.getRuc().equalsIgnoreCase("0993013447001") 
-                || this.emisor.getRuc().equalsIgnoreCase("0993046590001") 
-                || this.emisor.getRuc().equalsIgnoreCase("0992879254001") 
+                && (this.emisor.getRuc().equalsIgnoreCase("0993013447001")
+                || this.emisor.getRuc().equalsIgnoreCase("0993046590001")
+                || this.emisor.getRuc().equalsIgnoreCase("0992879254001")
                 || this.emisor.getRuc().equalsIgnoreCase("0791702070001") //NET2
                 || this.emisor.getRuc().equalsIgnoreCase("0791702054001") //NET3
                 || this.emisor.getRuc().equalsIgnoreCase("0791755093001") //NET1
@@ -407,7 +436,7 @@ public class GenerarXMLFactura {
             detalle.setValue(this.invVentas.getVtaObservaciones());
             info.getCampoAdicional().add(detalle);
         }
-        
+
 //        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {	
 //            Factura.InfoAdicional.CampoAdicional detalle = new Factura.InfoAdicional.CampoAdicional();	
 //            detalle.setNombre("Régimen");	

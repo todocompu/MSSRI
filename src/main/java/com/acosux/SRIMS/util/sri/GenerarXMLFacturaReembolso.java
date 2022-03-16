@@ -87,7 +87,7 @@ public class GenerarXMLFacturaReembolso {
                 add(invVentas.getVtaDescuentoBaseNoObjeto()).add(BigDecimal.ZERO), 2, java.math.RoundingMode.HALF_UP));
 
         //*************************impuestos*****************************
-        infoFacturaReembolso.setTotalConImpuesto(generaTotalesImpuestoFacturaReembolso(
+        infoFacturaReembolso.setTotalConImpuestos(generaTotalesImpuestoFacturaReembolso(
                 UtilsArchivos.redondeoDecimalBigDecimal(invVentas.getVtaSubtotalBase0(), 2, // el xml no admite mas decimales
                         java.math.RoundingMode.HALF_UP),
                 UtilsArchivos.redondeoDecimalBigDecimal(invVentas.getVtaSubtotalBaseImponible(), 2, // el xml no admite mas decimales
@@ -152,7 +152,7 @@ public class GenerarXMLFacturaReembolso {
                                 .multiply(invVentasDetalleTO.getPrecioProducto())
                                 .multiply(invVentasDetalleTO.getPorcentajeDescuento())
                                 .divide(new java.math.BigDecimal("100"), 2, RoundingMode.HALF_UP)));
-                detalle.setPrecioTotalSinImpuestos(UtilsArchivos.redondeoDecimalBigDecimal(invVentasDetalleTO.getDetalleTotal()
+                detalle.setPrecioTotalSinImpuesto(UtilsArchivos.redondeoDecimalBigDecimal(invVentasDetalleTO.getDetalleTotal()
                         .subtract(invVentasDetalleTO.getIvaCobrado())
                         .subtract(invVentasDetalleTO.getDetMontoIce())
                         .add(BigDecimal.ZERO), 2, RoundingMode.HALF_UP));
@@ -194,8 +194,12 @@ public class GenerarXMLFacturaReembolso {
             detalle.setIdentificacionProveedorReembolso(reemb.getProvIdNumero());
             detalle.setCodPaisPagoProveedorReembolso("593");
             //Averiguar si va null
-            if (reemb.getProvExtranjeroTipo() != null) {
-                detalle.setTipoProveedorReembolso(reemb.getProvExtranjeroTipo());
+            if (reemb.getProvCategoriaDetalle() != null) {
+                if (reemb.getProvCategoriaDetalle().contains("NATURAL")) {
+                    detalle.setTipoProveedorReembolso("01");
+                } else {
+                    detalle.setTipoProveedorReembolso("02");
+                }
             }
             detalle.setCodDocReembolso(reemb.getReembDocumentoTipo());
             detalle.setEstabDocReembolso(reemb.getReembDocumentoNumero().substring(0, 3));
@@ -210,7 +214,7 @@ public class GenerarXMLFacturaReembolso {
             facturaReembolso.setReembolsos(rembolsos);
         }
         //*********************campo nuevo REEMBOLSO*******************
-        facturaReembolso.getInfoFactura().setCodDocReemb("41");
+        facturaReembolso.getInfoFactura().setCodDocReembolso(41);
         facturaReembolso.getInfoFactura().setTotalComprobantesReembolso(UtilsArchivos.redondeoDecimalBigDecimal(totalComprobantesReembolso, 2, java.math.RoundingMode.HALF_UP));
         facturaReembolso.getInfoFactura().setTotalBaseImponibleReembolso(UtilsArchivos.redondeoDecimalBigDecimal(totalBaseImponibleReembolso, 2, java.math.RoundingMode.HALF_UP));
         facturaReembolso.getInfoFactura().setTotalImpuestoReembolso(UtilsArchivos.redondeoDecimalBigDecimal(totalImpuestoReembolso, 2, java.math.RoundingMode.HALF_UP));

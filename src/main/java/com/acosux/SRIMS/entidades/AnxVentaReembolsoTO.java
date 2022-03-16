@@ -47,8 +47,8 @@ public class AnxVentaReembolsoTO implements Serializable {
     private String provCodigo;
     @Column(name = "prov_id_tipo")
     private String provIdTipo;
-    @Column(name = "prov_extranjero_tipo")
-    private String provExtranjeroTipo;
+    @Column(name = "prov_categoria_detalle")
+    private String provCategoriaDetalle;
     @Column(name = "prov_razon_social")
     private String provRazonSocial;
     @Column(name = "prov_id_numero")
@@ -186,12 +186,12 @@ public class AnxVentaReembolsoTO implements Serializable {
         this.provIdTipo = provIdTipo;
     }
 
-    public String getProvExtranjeroTipo() {
-        return provExtranjeroTipo;
+    public String getProvCategoriaDetalle() {
+        return provCategoriaDetalle;
     }
 
-    public void setProvExtranjeroTipo(String provExtranjeroTipo) {
-        this.provExtranjeroTipo = provExtranjeroTipo;
+    public void setProvCategoriaDetalle(String provCategoriaDetalle) {
+        this.provCategoriaDetalle = provCategoriaDetalle;
     }
 
     public String getProvRazonSocial() {
