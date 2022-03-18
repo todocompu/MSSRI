@@ -12,6 +12,7 @@ import com.acosux.SRIMS.entidades.AnxGuiaRemisionElectronicaTO;
 import com.acosux.SRIMS.entidades.AnxLiquidacionComprasElectronicaTO;
 import com.acosux.SRIMS.entidades.AnxValidezComprobanteElectronico;
 import com.acosux.SRIMS.entidades.AnxVentaElectronicaTO;
+import com.acosux.SRIMS.entidades.AnxVentaExportacion;
 import com.acosux.SRIMS.entidades.AnxVentaReembolsoTO;
 import com.acosux.SRIMS.entidades.InvCliente;
 import com.acosux.SRIMS.entidades.InvComprasDetalle;
@@ -262,6 +263,8 @@ public class ConsultasSRIController {
         SisEmpresaParametros sisEmpresaParametros = UtilsJSON.jsonToObjeto(SisEmpresaParametros.class, map.get("sisEmpresaParametros"));
         Date fechaComplemento = UtilsJSON.jsonToObjeto(Date.class, map.get("fechaComplemento"));
         byte[] archivoFirma = UtilsJSON.jsonToObjeto(byte[].class, map.get("archivoFirma"));
+        AnxVentaExportacion exportacion = UtilsJSON.jsonToObjeto(AnxVentaExportacion.class, map.get("exportacion"));
+
         UtilsArchivos util = new UtilsArchivos();
         String mensaje = "F";
         try {
@@ -272,7 +275,7 @@ public class ConsultasSRIController {
                     GenerarXMLFacturaReembolso xmlReembolso = new GenerarXMLFacturaReembolso();
                     objComprobante = xmlReembolso.generarComprobanteFacturaReembolso(invVentas, invCliente, listaInvVentasDetalleTO, claveAcceso, emisor, tipoIdentificacion, direccion, listaAnxVentaReembolsoTO, sisEmpresaParametros);
                 } else {
-                    objComprobante = generarXMLFactura.generarComprobanteFactura(invVentas, invCliente, listaInvVentasDetalleTO, claveAcceso, emisor, tipoIdentificacion, guia, direccion, sisEmpresaParametros);
+                    objComprobante = generarXMLFactura.generarComprobanteFactura(invVentas, invCliente, listaInvVentasDetalleTO, claveAcceso, emisor, tipoIdentificacion, guia, direccion, exportacion, sisEmpresaParametros);
                 }
             } else if (tipoComprobante.compareTo(TipoComprobanteEnum.NOTA_DE_CREDITO.getCode()) == 0) {
                 GenerarXMLNotaCredito generarXMLNotaCredito = new GenerarXMLNotaCredito();

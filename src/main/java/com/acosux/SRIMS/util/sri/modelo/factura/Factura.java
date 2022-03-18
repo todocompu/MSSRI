@@ -98,8 +98,11 @@ public class Factura {
 
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {"fechaEmision", "dirEstablecimiento", "contribuyenteEspecial",
-        "obligadoContabilidad", "tipoIdentificacionComprador", "guiaRemision", "razonSocialComprador",
-        "identificacionComprador", "totalSinImpuestos", "totalDescuento", "totalConImpuestos", "propina",
+        "obligadoContabilidad", "comercioExterior", "IncoTermFactura", "lugarIncoTerm", "paisOrigen", "puertoEmbarque",
+        "puertoDestino", "paisDestino", "paisAdquisicion",
+        "tipoIdentificacionComprador", "guiaRemision", "razonSocialComprador",
+        "identificacionComprador", "totalSinImpuestos", "incoTermTotalSinImpuestos", "totalDescuento", "totalConImpuestos", "propina",
+        "fleteInternacional", "seguroInternacional", "gastosAduaneros", "gastosTransporteOtros",
         "importeTotal", "moneda", "pagos"})
     public static class InfoFactura {
 
@@ -111,6 +114,16 @@ public class Factura {
         protected String contribuyenteEspecial;
         protected String obligadoContabilidad;
 
+        //exportacion
+        protected String comercioExterior;//OBL
+        protected String IncoTermFactura;//OBL
+        protected String lugarIncoTerm;//OBL
+        protected Integer paisOrigen;//OBL
+        protected String puertoEmbarque;//OBL
+        protected String puertoDestino;//OBL
+        protected Integer paisDestino;
+        protected Integer paisAdquisicion;
+        //
         @XmlElement(required = true)
         protected String tipoIdentificacionComprador;
         protected String guiaRemision;
@@ -123,7 +136,9 @@ public class Factura {
 
         @XmlElement(required = true)
         protected BigDecimal totalSinImpuestos;
-
+        //exportacion
+        protected String incoTermTotalSinImpuestos;//OBL
+        //
         @XmlElement(required = true)
         protected BigDecimal totalDescuento;
 
@@ -135,6 +150,12 @@ public class Factura {
 
         @XmlElement(required = true)
         protected BigDecimal propina;
+        //exportacion
+        protected BigDecimal fleteInternacional;
+        protected BigDecimal seguroInternacional;
+        protected BigDecimal gastosAduaneros;
+        protected BigDecimal gastosTransporteOtros;
+        //
 
         @XmlElement(required = true)
         protected BigDecimal importeTotal;
@@ -258,6 +279,110 @@ public class Factura {
 
         public void setMoneda(String value) {
             this.moneda = value;
+        }
+
+        public String getComercioExterior() {
+            return comercioExterior;
+        }
+
+        public void setComercioExterior(String comercioExterior) {
+            this.comercioExterior = comercioExterior;
+        }
+
+        public String getIncoTermFactura() {
+            return IncoTermFactura;
+        }
+
+        public void setIncoTermFactura(String IncoTermFactura) {
+            this.IncoTermFactura = IncoTermFactura;
+        }
+
+        public String getLugarIncoTerm() {
+            return lugarIncoTerm;
+        }
+
+        public void setLugarIncoTerm(String lugarIncoTerm) {
+            this.lugarIncoTerm = lugarIncoTerm;
+        }
+
+        public Integer getPaisOrigen() {
+            return paisOrigen;
+        }
+
+        public void setPaisOrigen(Integer paisOrigen) {
+            this.paisOrigen = paisOrigen;
+        }
+
+        public String getPuertoEmbarque() {
+            return puertoEmbarque;
+        }
+
+        public void setPuertoEmbarque(String puertoEmbarque) {
+            this.puertoEmbarque = puertoEmbarque;
+        }
+
+        public String getPuertoDestino() {
+            return puertoDestino;
+        }
+
+        public void setPuertoDestino(String puertoDestino) {
+            this.puertoDestino = puertoDestino;
+        }
+
+        public Integer getPaisDestino() {
+            return paisDestino;
+        }
+
+        public void setPaisDestino(Integer paisDestino) {
+            this.paisDestino = paisDestino;
+        }
+
+        public Integer getPaisAdquisicion() {
+            return paisAdquisicion;
+        }
+
+        public void setPaisAdquisicion(Integer paisAdquisicion) {
+            this.paisAdquisicion = paisAdquisicion;
+        }
+
+        public String getIncoTermTotalSinImpuestos() {
+            return incoTermTotalSinImpuestos;
+        }
+
+        public void setIncoTermTotalSinImpuestos(String incoTermTotalSinImpuestos) {
+            this.incoTermTotalSinImpuestos = incoTermTotalSinImpuestos;
+        }
+
+        public BigDecimal getFleteInternacional() {
+            return fleteInternacional;
+        }
+
+        public void setFleteInternacional(BigDecimal fleteInternacional) {
+            this.fleteInternacional = fleteInternacional;
+        }
+
+        public BigDecimal getSeguroInternacional() {
+            return seguroInternacional;
+        }
+
+        public void setSeguroInternacional(BigDecimal seguroInternacional) {
+            this.seguroInternacional = seguroInternacional;
+        }
+
+        public BigDecimal getGastosAduaneros() {
+            return gastosAduaneros;
+        }
+
+        public void setGastosAduaneros(BigDecimal gastosAduaneros) {
+            this.gastosAduaneros = gastosAduaneros;
+        }
+
+        public BigDecimal getGastosTransporteOtros() {
+            return gastosTransporteOtros;
+        }
+
+        public void setGastosTransporteOtros(BigDecimal gastosTransporteOtros) {
+            this.gastosTransporteOtros = gastosTransporteOtros;
         }
 
         @XmlAccessorType(XmlAccessType.FIELD)
