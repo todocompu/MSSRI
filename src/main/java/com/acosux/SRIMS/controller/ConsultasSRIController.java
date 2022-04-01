@@ -271,7 +271,7 @@ public class ConsultasSRIController {
             Object objComprobante = null;
             if (tipoComprobante.compareTo(TipoComprobanteEnum.FACTURA.getCode()) == 0) {
                 GenerarXMLFactura generarXMLFactura = new GenerarXMLFactura();
-                if (invVentas.isVtaReembolso() && listaAnxVentaReembolsoTO != null && listaAnxVentaReembolsoTO.size() > 0) {
+                if (listaAnxVentaReembolsoTO != null && listaAnxVentaReembolsoTO.size() > 0) {
                     GenerarXMLFacturaReembolso xmlReembolso = new GenerarXMLFacturaReembolso();
                     objComprobante = xmlReembolso.generarComprobanteFacturaReembolso(invVentas, invCliente, listaInvVentasDetalleTO, claveAcceso, emisor, tipoIdentificacion, direccion, listaAnxVentaReembolsoTO, sisEmpresaParametros);
                 } else {
