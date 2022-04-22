@@ -209,6 +209,23 @@ public class GenerarXMLFacturaReembolso {
             detalle.setNumeroautorizacionDocReemb(reemb.getReembAutorizacion());
             detalle.setDetalleImpuestos(obtenerImpuestosDetalleReembolso(reemb));
             rembolsos.getReembolsoDetalle().add(detalle);
+            //calculos totales 
+
+            BigDecimal totalBaseImponibleReembolsoAux = BigDecimal.ZERO;
+            BigDecimal totalImpuestoReembolsoAux = BigDecimal.ZERO;
+            BigDecimal totalComprobantesReembolsoAux = BigDecimal.ZERO;
+            List<FacturaReembolso.Reembolsos.ReembolsoDetalle.DetalleImpuestos.DetalleImpuesto> impuestos = detalle.getDetalleImpuestos().getDetalleImpuesto();
+            for (FacturaReembolso.Reembolsos.ReembolsoDetalle.DetalleImpuestos.DetalleImpuesto item : impuestos) {
+                totalBaseImponibleReembolsoAux = UtilsArchivos.redondeoDecimalBigDecimal(
+                        totalBaseImponibleReembolsoAux.add(item.getBaseImponibleReembolso()), 2, java.math.RoundingMode.HALF_UP);
+                totalImpuestoReembolsoAux = UtilsArchivos.redondeoDecimalBigDecimal(totalImpuestoReembolsoAux.add(item.getImpuestoReembolso()), 2, java.math.RoundingMode.HALF_UP);
+                totalComprobantesReembolsoAux = UtilsArchivos.redondeoDecimalBigDecimal(totalComprobantesReembolsoAux.add(totalBaseImponibleReembolsoAux).add(totalImpuestoReembolsoAux), 2,
+                        java.math.RoundingMode.HALF_UP);
+            }
+
+            totalComprobantesReembolso = totalComprobantesReembolso.add(totalBaseImponibleReembolsoAux);
+            totalBaseImponibleReembolso = totalBaseImponibleReembolso.add(totalImpuestoReembolsoAux);
+            totalImpuestoReembolso = totalImpuestoReembolso.add(totalComprobantesReembolsoAux);
         }
         if (rembolsos != null) {
             facturaReembolso.setReembolsos(rembolsos);
@@ -449,15 +466,12 @@ public class GenerarXMLFacturaReembolso {
                         (anxVentaReembolsoTO.getReembBaseimpgrav() != null ? anxVentaReembolsoTO.getReembBaseimpgrav() : BigDecimal.ZERO)).add(
                         (anxVentaReembolsoTO.getReembBasenograiva() != null ? anxVentaReembolsoTO.getReembBasenograiva() : BigDecimal.ZERO)),
                 2, java.math.RoundingMode.HALF_UP));
-        totalBaseImponibleReembolso = UtilsArchivos.redondeoDecimalBigDecimal(totalBaseImponibleReembolso.add(i.getBaseImponibleReembolso()), 2, java.math.RoundingMode.HALF_UP);
         //suma monto ice + monto iva
         i.setImpuestoReembolso(
                 UtilsArchivos.redondeoDecimalBigDecimal(
                         (anxVentaReembolsoTO.getReembMontoice() != null ? anxVentaReembolsoTO.getReembMontoice() : BigDecimal.ZERO).add(
                                 (anxVentaReembolsoTO.getReembMontoiva() != null ? anxVentaReembolsoTO.getReembMontoiva() : BigDecimal.ZERO)),
                         2, java.math.RoundingMode.HALF_UP));
-        totalImpuestoReembolso = UtilsArchivos.redondeoDecimalBigDecimal(totalImpuestoReembolso.add(i.getImpuestoReembolso()), 2, java.math.RoundingMode.HALF_UP);
-        totalComprobantesReembolso = UtilsArchivos.redondeoDecimalBigDecimal(totalComprobantesReembolso.add(totalBaseImponibleReembolso).add(totalImpuestoReembolso), 2, java.math.RoundingMode.HALF_UP);
         result.getDetalleImpuesto().add(i);
         //****************ICE********************
         if (anxVentaReembolsoTO.getReembMontoice() != null && anxVentaReembolsoTO.getReembMontoice().compareTo(BigDecimal.ZERO) > 0) {
