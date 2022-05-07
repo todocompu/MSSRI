@@ -223,9 +223,9 @@ public class GenerarXMLFacturaReembolso {
                         java.math.RoundingMode.HALF_UP);
             }
 
-            totalComprobantesReembolso = totalComprobantesReembolso.add(totalBaseImponibleReembolsoAux);
-            totalBaseImponibleReembolso = totalBaseImponibleReembolso.add(totalImpuestoReembolsoAux);
-            totalImpuestoReembolso = totalImpuestoReembolso.add(totalComprobantesReembolsoAux);
+            totalComprobantesReembolso = totalComprobantesReembolso.add(totalComprobantesReembolsoAux);
+            totalBaseImponibleReembolso = totalBaseImponibleReembolso.add(totalBaseImponibleReembolsoAux);
+            totalImpuestoReembolso = totalImpuestoReembolso.add(totalImpuestoReembolsoAux);
         }
         if (rembolsos != null) {
             facturaReembolso.setReembolsos(rembolsos);
