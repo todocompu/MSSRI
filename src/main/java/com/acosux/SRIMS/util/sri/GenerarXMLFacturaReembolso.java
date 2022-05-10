@@ -207,7 +207,7 @@ public class GenerarXMLFacturaReembolso {
             detalle.setSecuencialDocReembolso(reemb.getReembDocumentoNumero().substring(8));
             detalle.setFechaEmisionDocReembolso(UtilsArchivos.fecha(reemb.getReembFechaemision(), "yyyy-MM-dd", "dd/MM/yyyy"));
             detalle.setNumeroautorizacionDocReemb(reemb.getReembAutorizacion());
-            detalle.setDetalleImpuestos(obtenerImpuestosDetalleReembolso(reemb));
+            detalle.setDetalleImpuestos(obtenerImpuestosDetalleReembolso(reemb, ivaVigente));
             rembolsos.getReembolsoDetalle().add(detalle);
             //calculos totales 
 
@@ -446,7 +446,7 @@ public class GenerarXMLFacturaReembolso {
         return respuesta;
     }
 
-    private FacturaReembolso.Reembolsos.ReembolsoDetalle.DetalleImpuestos obtenerImpuestosDetalleReembolso(AnxVentaReembolsoTO anxVentaReembolsoTO) {
+    private FacturaReembolso.Reembolsos.ReembolsoDetalle.DetalleImpuestos obtenerImpuestosDetalleReembolso(AnxVentaReembolsoTO anxVentaReembolsoTO, BigDecimal ivaVigente) {
         FacturaReembolso.Reembolsos.ReembolsoDetalle.DetalleImpuestos result = new FacturaReembolso.Reembolsos.ReembolsoDetalle.DetalleImpuestos();
         DetalleImpuesto i = new DetalleImpuesto();
         //******************IVA*********************
@@ -456,10 +456,7 @@ public class GenerarXMLFacturaReembolso {
                 anxVentaReembolsoTO.getReembMontoiva() != null && anxVentaReembolsoTO.getReembMontoiva().compareTo(BigDecimal.ZERO) > 0,
                 anxVentaReembolsoTO.getReembIvaVigente()));
         //monto iva
-        i.setTarifa(
-                UtilsArchivos.redondeoDecimalBigDecimal(
-                        (anxVentaReembolsoTO.getReembMontoiva().compareTo(BigDecimal.ZERO) > 0) ? anxVentaReembolsoTO.getReembMontoiva() : BigDecimal.ZERO,
-                        2, java.math.RoundingMode.HALF_UP));
+        i.setTarifa(UtilsArchivos.redondeoDecimalBigDecimal((anxVentaReembolsoTO.getReembMontoiva().compareTo(BigDecimal.ZERO) > 0)  ? ivaVigente : BigDecimal.ZERO, 2, RoundingMode.HALF_UP));
         //suma de base 0 + base ng + base imp
         i.setBaseImponibleReembolso(UtilsArchivos.redondeoDecimalBigDecimal(
                 (anxVentaReembolsoTO.getReembBaseimponible() != null ? anxVentaReembolsoTO.getReembBaseimponible() : BigDecimal.ZERO).add(
