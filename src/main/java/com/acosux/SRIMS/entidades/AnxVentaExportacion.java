@@ -71,6 +71,28 @@ public class AnxVentaExportacion implements Serializable {
     private String vtaMotivo;
     @Column(name = "vta_numero")
     private String vtaNumero;
+    @Column(name = "exp_numero_fue")
+    private String expNumeroFue;
+    @Column(name = "exp_verificador")
+    private BigDecimal expVerificador;
+    @Column(name = "exp_factura")
+    private String expFactura;
+    @Column(name = "exp_lugar")
+    private String expLugar;
+    @Column(name = "exp_puerto_embarque")
+    private String expPuertoEmbarque;
+    @Column(name = "exp_puerto_destino")
+    private String expPuertoDestino;
+    @Column(name = "exp_pais_destino")
+    private String expPaisDestino;
+    @Column(name = "exp_flete")
+    private BigDecimal expFlete;
+    @Column(name = "exp_seguro")
+    private BigDecimal expSeguro;
+    @Column(name = "exp_gastos_aduaneros")
+    private BigDecimal expGastosAduaneros;
+    @Column(name = "exp_transporte_otros")
+    private BigDecimal expTransporteOtros;
 
     public AnxVentaExportacion() {
     }
@@ -273,6 +295,94 @@ public class AnxVentaExportacion implements Serializable {
 
     public void setExpObservaciones(String expObservaciones) {
         this.expObservaciones = expObservaciones;
+    }
+
+    public String getExpNumeroFue() {
+        return expNumeroFue;
+    }
+
+    public void setExpNumeroFue(String expNumeroFue) {
+        this.expNumeroFue = expNumeroFue;
+    }
+
+    public BigDecimal getExpVerificador() {
+        return expVerificador;
+    }
+
+    public void setExpVerificador(BigDecimal expVerificador) {
+        this.expVerificador = expVerificador;
+    }
+
+    public String getExpFactura() {
+        return expFactura;
+    }
+
+    public void setExpFactura(String expFactura) {
+        this.expFactura = expFactura;
+    }
+
+    public String getExpLugar() {
+        return expLugar;
+    }
+
+    public void setExpLugar(String expLugar) {
+        this.expLugar = expLugar;
+    }
+
+    public String getExpPuertoEmbarque() {
+        return expPuertoEmbarque;
+    }
+
+    public void setExpPuertoEmbarque(String expPuertoEmbarque) {
+        this.expPuertoEmbarque = expPuertoEmbarque;
+    }
+
+    public String getExpPuertoDestino() {
+        return expPuertoDestino;
+    }
+
+    public void setExpPuertoDestino(String expPuertoDestino) {
+        this.expPuertoDestino = expPuertoDestino;
+    }
+
+    public String getExpPaisDestino() {
+        return expPaisDestino;
+    }
+
+    public void setExpPaisDestino(String expPaisDestino) {
+        this.expPaisDestino = expPaisDestino;
+    }
+
+    public BigDecimal getExpFlete() {
+        return expFlete;
+    }
+
+    public void setExpFlete(BigDecimal expFlete) {
+        this.expFlete = expFlete;
+    }
+
+    public BigDecimal getExpSeguro() {
+        return expSeguro;
+    }
+
+    public void setExpSeguro(BigDecimal expSeguro) {
+        this.expSeguro = expSeguro;
+    }
+
+    public BigDecimal getExpGastosAduaneros() {
+        return expGastosAduaneros;
+    }
+
+    public void setExpGastosAduaneros(BigDecimal expGastosAduaneros) {
+        this.expGastosAduaneros = expGastosAduaneros;
+    }
+
+    public BigDecimal getExpTransporteOtros() {
+        return expTransporteOtros;
+    }
+
+    public void setExpTransporteOtros(BigDecimal expTransporteOtros) {
+        this.expTransporteOtros = expTransporteOtros;
     }
 
 }
