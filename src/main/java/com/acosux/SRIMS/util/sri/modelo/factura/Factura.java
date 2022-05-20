@@ -98,7 +98,7 @@ public class Factura {
 
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {"fechaEmision", "dirEstablecimiento", "contribuyenteEspecial",
-        "obligadoContabilidad", "comercioExterior", "IncoTermFactura", "lugarIncoTerm", "paisOrigen", "puertoEmbarque",
+        "obligadoContabilidad", "comercioExterior", "incoTermFactura", "lugarIncoTerm", "paisOrigen", "puertoEmbarque",
         "puertoDestino", "paisDestino", "paisAdquisicion",
         "tipoIdentificacionComprador", "guiaRemision", "razonSocialComprador",
         "identificacionComprador", "totalSinImpuestos", "incoTermTotalSinImpuestos", "totalDescuento", "totalConImpuestos", "propina",
@@ -116,7 +116,7 @@ public class Factura {
 
         //exportacion
         protected String comercioExterior;//OBL
-        protected String IncoTermFactura;//OBL
+        protected String incoTermFactura;//OBL
         protected String lugarIncoTerm;//OBL
         protected Integer paisOrigen;//OBL
         protected String puertoEmbarque;//OBL
@@ -290,11 +290,11 @@ public class Factura {
         }
 
         public String getIncoTermFactura() {
-            return IncoTermFactura;
+            return incoTermFactura;
         }
 
-        public void setIncoTermFactura(String IncoTermFactura) {
-            this.IncoTermFactura = IncoTermFactura;
+        public void setIncoTermFactura(String incoTermFactura) {
+            this.incoTermFactura = incoTermFactura;
         }
 
         public String getLugarIncoTerm() {
