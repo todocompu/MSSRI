@@ -152,6 +152,7 @@ public class GenerarXMLFactura {
                         java.math.RoundingMode.HALF_UP)));
         this.infoFactura.setPropina(cero);
         //exportacion
+        BigDecimal totalExportaciones = cero;
         if (this.exportacion != null) {
             this.infoFactura.setFleteInternacional(UtilsArchivos.redondeoDecimalBigDecimal(
                     this.exportacion.getExpFlete() != null ? this.exportacion.getExpFlete() : BigDecimal.ZERO,
@@ -165,9 +166,26 @@ public class GenerarXMLFactura {
             this.infoFactura.setGastosTransporteOtros(UtilsArchivos.redondeoDecimalBigDecimal(
                     this.exportacion.getExpTransporteOtros() != null ? this.exportacion.getExpTransporteOtros() : BigDecimal.ZERO,
                     2, java.math.RoundingMode.HALF_UP));
+
+            totalExportaciones = this.infoFactura.getFleteInternacional().add(this.infoFactura.getSeguroInternacional())
+                    .add(this.infoFactura.getGastosAduaneros())
+                    .add(this.infoFactura.getGastosTransporteOtros());
         }
-        //****
-        this.infoFactura.setImporteTotal(invVentas.getVtaTotal());
+        //**** IT= totalSinImpuesto - totalDescuentoAdicional - totalDevolucion - totalCompensaciones + totalImpuesto + propina + totalRetenciones + totalExportaciones
+        //  + totalRuboTercero
+        BigDecimal totalConImpuesto = cero;
+        List<Factura.InfoFactura.TotalConImpuestos.TotalImpuesto> impuestos = this.infoFactura.getTotalConImpuestos().getTotalImpuesto();
+        for (Factura.InfoFactura.TotalConImpuestos.TotalImpuesto en : impuestos) {
+            if (!en.getCodigoPorcentaje().equals("0")) {
+                totalConImpuesto = totalConImpuesto.add(en.getValor());
+            }
+        }
+
+        BigDecimal importeTotal = this.infoFactura.getTotalSinImpuestos()
+                .subtract(this.infoFactura.getTotalDescuento())
+                .add(totalConImpuesto)
+                .add(totalExportaciones);
+        this.infoFactura.setImporteTotal(importeTotal);
         this.infoFactura.setMoneda("DOLAR");
         if (invVentas.getVtaPagadoEfectivo().compareTo(cero) != 0
                 || invVentas.getVtaPagadoDineroElectronico().compareTo(cero) != 0
@@ -218,8 +236,7 @@ public class GenerarXMLFactura {
 
     private Factura.InfoFactura.TotalConImpuestos generaTotalesImpuestoFactura(java.math.BigDecimal parcialCero,
             java.math.BigDecimal parcialImponible) {
-        Factura.InfoFactura.TotalConImpuestos respuesta = this.facturaFactory
-                .createFacturaInfoFacturaTotalConImpuestos();
+        Factura.InfoFactura.TotalConImpuestos respuesta = this.facturaFactory.createFacturaInfoFacturaTotalConImpuestos();
         Factura.InfoFactura.TotalConImpuestos.TotalImpuesto impuesto;
         // iva 0%
         if (parcialCero.compareTo(BigDecimal.ZERO) > 0) {
