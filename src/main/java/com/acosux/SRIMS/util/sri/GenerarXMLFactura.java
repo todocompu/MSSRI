@@ -173,18 +173,7 @@ public class GenerarXMLFactura {
         }
         //**** IT= totalSinImpuesto - totalDescuentoAdicional - totalDevolucion - totalCompensaciones + totalImpuesto + propina + totalRetenciones + totalExportaciones
         //  + totalRuboTercero
-        BigDecimal totalConImpuesto = cero;
-        List<Factura.InfoFactura.TotalConImpuestos.TotalImpuesto> impuestos = this.infoFactura.getTotalConImpuestos().getTotalImpuesto();
-        for (Factura.InfoFactura.TotalConImpuestos.TotalImpuesto en : impuestos) {
-            if (!en.getCodigoPorcentaje().equals("0")) {
-                totalConImpuesto = totalConImpuesto.add(en.getValor());
-            }
-        }
-
-        BigDecimal importeTotal = this.infoFactura.getTotalSinImpuestos()
-                .subtract(this.infoFactura.getTotalDescuento())
-                .add(totalConImpuesto)
-                .add(totalExportaciones);
+        BigDecimal importeTotal = invVentas.getVtaTotal().add(totalExportaciones);
         this.infoFactura.setImporteTotal(importeTotal);
         this.infoFactura.setMoneda("DOLAR");
         if (invVentas.getVtaPagadoEfectivo().compareTo(cero) != 0
