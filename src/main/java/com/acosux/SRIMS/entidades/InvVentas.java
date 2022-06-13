@@ -34,6 +34,7 @@ public class InvVentas implements Serializable {
     private String cliCodigoEstablecimiento;
     private String usrCodigo;
     private boolean vtaReembolso;
+    private boolean vtaNegociable;
 
     public InvVentas() {
     }
@@ -228,6 +229,14 @@ public class InvVentas implements Serializable {
 
     public void setVtaReembolso(boolean vtaReembolso) {
         this.vtaReembolso = vtaReembolso;
+    }
+
+    public boolean isVtaNegociable() {
+        return vtaNegociable;
+    }
+
+    public void setVtaNegociable(boolean vtaNegociable) {
+        this.vtaNegociable = vtaNegociable;
     }
 
 }

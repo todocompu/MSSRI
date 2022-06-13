@@ -58,12 +58,25 @@ public class GenerarXMLFactura {
         this.ivaVigente = invVentas.getVtaIvaVigente();
         if (!llenarObjetoComprobanteElectronicoFactura()) {
             Factura.Detalles detalles = generarDetalleFactura();
+            //*******negociable
+            Factura.TipoNegociable tipoNegociable = null;
+            if (invVentas.isVtaNegociable() && this.invCliente.getCliEmail() != null) {
+                tipoNegociable = new Factura.TipoNegociable();
+                String[] correos = this.invCliente.getCliEmail().split(";");
+                for (String correo : correos) {
+                    tipoNegociable.setCorreo(correo);
+                }
+            }
+            //******
             Factura.InfoAdicional informacion = generarInformacionAdicionalFactura();
             factura = new Factura();
             factura.setInfoTributaria(this.infoTributaria);
             factura.setInfoFactura(this.infoFactura);
             if (detalles != null) {
                 factura.setDetalles(detalles);
+            }
+            if (invVentas.isVtaNegociable()) {
+                factura.setTipoNegociable(tipoNegociable);
             }
             if (this.invVentaGuiaRemision != null) {
                 factura.setInfoSustitutivaGuiaRemision(generarSustitutivaGuia());

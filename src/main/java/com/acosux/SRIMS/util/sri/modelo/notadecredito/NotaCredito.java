@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * @author Ing. Mario
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {"infoTributaria", "infoNotaCredito", "detalles", "infoAdicional"})
+@XmlType(name = "", propOrder = {"infoTributaria", "infoNotaCredito", "detalles", "tipoNegociable", "infoAdicional"})
 @XmlRootElement(name = "notaCredito")
 public class NotaCredito {
 
@@ -33,6 +33,7 @@ public class NotaCredito {
 
     @XmlElement(required = true)
     protected Detalles detalles;
+    public TipoNegociable tipoNegociable;
     protected InfoAdicional infoAdicional;
 
     @XmlAttribute(required = true)
@@ -73,6 +74,14 @@ public class NotaCredito {
 
     public void setInfoAdicional(InfoAdicional value) {
         this.infoAdicional = value;
+    }
+
+    public TipoNegociable getTipoNegociable() {
+        return tipoNegociable;
+    }
+
+    public void setTipoNegociable(TipoNegociable tipoNegociable) {
+        this.tipoNegociable = tipoNegociable;
     }
 
     public String getId() {
@@ -303,6 +312,23 @@ public class NotaCredito {
                 this.nombre = value;
             }
         }
+    }
+
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {"correo"})
+    public static class TipoNegociable {
+
+        @XmlElement(required = true)
+        protected String correo;
+
+        public String getCorreo() {
+            return correo;
+        }
+
+        public void setCorreo(String correo) {
+            this.correo = correo;
+        }
+
     }
 
     @XmlAccessorType(XmlAccessType.FIELD)

@@ -58,6 +58,18 @@ public class GenerarXMLNotaCredito {
             notaCredito.setInfoTributaria(this.infoTributaria);
             notaCredito.setInfoNotaCredito(this.infoNotaCredito);
             notaCredito.setDetalles(generarDetalleNotaCredito());
+            //*******negociable
+            NotaCredito.TipoNegociable tipoNegociable = null;
+            if (invVentas.isVtaNegociable() && this.invCliente.getCliEmail() != null) {
+                tipoNegociable = new NotaCredito.TipoNegociable();
+                String[] correos = this.invCliente.getCliEmail().split(";");
+                for (String correo : correos) {
+                    tipoNegociable.setCorreo(correo);
+                }
+                notaCredito.setTipoNegociable(tipoNegociable);
+            }
+            //******
+
             if (informacion.getCampoAdicional().size() > 0) {
                 notaCredito.setInfoAdicional(informacion);
             }
@@ -215,7 +227,7 @@ public class GenerarXMLNotaCredito {
             detalle.setValue((String) this.emisor.getParWebDocumentosElectronicos());
             info.getCampoAdicional().add(detalle);
         }
-        
+
 //        if (this.sisEmpresaParametros.isParContribuyenteRegimenMicroempresa()) {	
 //            NotaCredito.InfoAdicional.CampoAdicional detalle = new NotaCredito.InfoAdicional.CampoAdicional();	
 //            detalle.setNombre("Régimen");	
