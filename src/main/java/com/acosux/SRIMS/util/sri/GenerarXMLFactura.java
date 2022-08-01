@@ -166,24 +166,24 @@ public class GenerarXMLFactura {
         this.infoFactura.setPropina(cero);
         //exportacion
         BigDecimal totalExportaciones = cero;
-        if (this.exportacion != null) {
-            this.infoFactura.setFleteInternacional(UtilsArchivos.redondeoDecimalBigDecimal(
-                    this.exportacion.getExpFlete() != null ? this.exportacion.getExpFlete() : BigDecimal.ZERO,
-                    2, java.math.RoundingMode.HALF_UP));
-            this.infoFactura.setSeguroInternacional(UtilsArchivos.redondeoDecimalBigDecimal(
-                    this.exportacion.getExpSeguro() != null ? this.exportacion.getExpSeguro() : BigDecimal.ZERO,
-                    2, java.math.RoundingMode.HALF_UP));
-            this.infoFactura.setGastosAduaneros(UtilsArchivos.redondeoDecimalBigDecimal(
-                    this.exportacion.getExpGastosAduaneros() != null ? this.exportacion.getExpGastosAduaneros() : BigDecimal.ZERO,
-                    2, java.math.RoundingMode.HALF_UP));
-            this.infoFactura.setGastosTransporteOtros(UtilsArchivos.redondeoDecimalBigDecimal(
-                    this.exportacion.getExpTransporteOtros() != null ? this.exportacion.getExpTransporteOtros() : BigDecimal.ZERO,
-                    2, java.math.RoundingMode.HALF_UP));
-
-            totalExportaciones = this.infoFactura.getFleteInternacional().add(this.infoFactura.getSeguroInternacional())
-                    .add(this.infoFactura.getGastosAduaneros())
-                    .add(this.infoFactura.getGastosTransporteOtros());
-        }
+//        if (this.exportacion != null) {
+//            this.infoFactura.setFleteInternacional(UtilsArchivos.redondeoDecimalBigDecimal(
+//                    this.exportacion.getExpFlete() != null ? this.exportacion.getExpFlete() : BigDecimal.ZERO,
+//                    2, java.math.RoundingMode.HALF_UP));
+//            this.infoFactura.setSeguroInternacional(UtilsArchivos.redondeoDecimalBigDecimal(
+//                    this.exportacion.getExpSeguro() != null ? this.exportacion.getExpSeguro() : BigDecimal.ZERO,
+//                    2, java.math.RoundingMode.HALF_UP));
+//            this.infoFactura.setGastosAduaneros(UtilsArchivos.redondeoDecimalBigDecimal(
+//                    this.exportacion.getExpGastosAduaneros() != null ? this.exportacion.getExpGastosAduaneros() : BigDecimal.ZERO,
+//                    2, java.math.RoundingMode.HALF_UP));
+//            this.infoFactura.setGastosTransporteOtros(UtilsArchivos.redondeoDecimalBigDecimal(
+//                    this.exportacion.getExpTransporteOtros() != null ? this.exportacion.getExpTransporteOtros() : BigDecimal.ZERO,
+//                    2, java.math.RoundingMode.HALF_UP));
+//
+//            totalExportaciones = this.infoFactura.getFleteInternacional().add(this.infoFactura.getSeguroInternacional())
+//                    .add(this.infoFactura.getGastosAduaneros())
+//                    .add(this.infoFactura.getGastosTransporteOtros());
+//        }
         //**** IT= totalSinImpuesto - totalDescuentoAdicional - totalDevolucion - totalCompensaciones + totalImpuesto + propina + totalRetenciones + totalExportaciones
         //  + totalRuboTercero
         BigDecimal importeTotal = invVentas.getVtaTotal().add(totalExportaciones);
