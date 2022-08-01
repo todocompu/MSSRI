@@ -144,7 +144,7 @@ public class GenerarXMLFactura {
         }
         //****
         this.infoFactura.setTipoIdentificacionComprador(codigoTipoTransaccion);
-        this.infoFactura.setRazonSocialComprador(invCliente.getCliRazonSocial());
+        this.infoFactura.setRazonSocialComprador(invCliente.getCliIdNumero() == null ? "CONSUMIDOR FINAL" : invCliente.getCliRazonSocial());
         this.infoFactura.setIdentificacionComprador(invCliente.getCliIdNumero() == null ? "9999999999999" : invCliente.getCliIdNumero());
         this.infoFactura.setTotalSinImpuestos(UtilsArchivos.redondeoDecimalBigDecimal(
                 invVentas.getVtaSubtotalBase0().add(invVentas.getVtaSubtotalBaseImponible()), 2,

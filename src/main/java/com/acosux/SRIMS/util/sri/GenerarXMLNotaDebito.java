@@ -120,7 +120,7 @@ public class GenerarXMLNotaDebito {
                 .setFechaEmision(UtilsArchivos.fecha(invVentas.getVtaFecha(), "dd/MM/yyyy"));
         this.infoNotaDebito.setDirEstablecimiento(emisor.getDirEstablecimiento());
         this.infoNotaDebito.setTipoIdentificacionComprador(codigoTipoTransaccion);
-        this.infoNotaDebito.setRazonSocialComprador(invCliente.getCliRazonSocial());
+        this.infoNotaDebito.setRazonSocialComprador(invCliente.getCliIdNumero() == null ? "CONSUMIDOR FINAL" : invCliente.getCliRazonSocial());
         this.infoNotaDebito.setIdentificacionComprador(invCliente.getCliIdNumero() == null ? "9999999999999" : invCliente.getCliIdNumero());
 
         if (emisor.getContribuyenteEspecial() != null && !emisor.getContribuyenteEspecial().equals("")) {

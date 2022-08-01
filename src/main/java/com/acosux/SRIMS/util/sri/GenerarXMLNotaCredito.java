@@ -113,7 +113,7 @@ public class GenerarXMLNotaCredito {
         this.infoNotaCredito.setFechaEmision(UtilsArchivos.fecha(invVentas.getVtaFecha(), "dd/MM/yyyy"));
         this.infoNotaCredito.setDirEstablecimiento(this.emisor.getDirEstablecimiento());
         this.infoNotaCredito.setTipoIdentificacionComprador(tipoIdentificacion);
-        this.infoNotaCredito.setRazonSocialComprador(invCliente.getCliRazonSocial());
+        this.infoNotaCredito.setRazonSocialComprador(invCliente.getCliIdNumero() == null ? "CONSUMIDOR FINAL" : invCliente.getCliRazonSocial());
         this.infoNotaCredito.setIdentificacionComprador(invCliente.getCliIdNumero() == null ? "9999999999999" : invCliente.getCliIdNumero());
 
         if (emisor.getContribuyenteEspecial() != null && !emisor.getContribuyenteEspecial().equals("")) {
