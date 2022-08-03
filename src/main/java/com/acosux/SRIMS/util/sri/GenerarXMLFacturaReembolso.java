@@ -76,7 +76,7 @@ public class GenerarXMLFacturaReembolso {
         }
         infoFacturaReembolso.setObligadoContabilidad(emisor.getLlevaContabilidad());
         infoFacturaReembolso.setTipoIdentificacionComprador(codigoTipoTransaccion);
-        infoFacturaReembolso.setRazonSocialComprador(invCliente.getCliRazonSocial());
+        infoFacturaReembolso.setRazonSocialComprador(invCliente.getCliIdNumero() == null ? "CONSUMIDOR FINAL" : invCliente.getCliRazonSocial());
         infoFacturaReembolso.setIdentificacionComprador(invCliente.getCliIdNumero() == null ? "9999999999999" : invCliente.getCliIdNumero());
         if (invCliente.getCliDireccion() != null && !invCliente.getCliDireccion().equals("")) {
             infoFacturaReembolso.setDireccionComprador(invCliente.getCliDireccion());//campo nuevo  
