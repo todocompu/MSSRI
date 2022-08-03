@@ -456,7 +456,10 @@ public class GenerarXMLFactura {
         }
 
         if (this.invVentas.getVtaFormaPago().equalsIgnoreCase("POR PAGAR")
-                && (this.emisor.getRuc().equalsIgnoreCase("0992879254001"))) {
+                && (this.emisor.getRuc().equalsIgnoreCase("0992879254001"))
+                && this.invVentas.getVtaObservaciones() != null 
+                  && !this.invVentas.getVtaObservaciones().equals("")
+                ) {
             //SOLO SI ES "COPACIGULF"
             Factura.InfoAdicional.CampoAdicional detalle = new Factura.InfoAdicional.CampoAdicional();
             detalle.setNombre("Observaciones");
